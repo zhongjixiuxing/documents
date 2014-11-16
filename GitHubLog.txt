@@ -1,0 +1,11 @@
+﻿1、create a new repository on the command line	(创建一个新的库)
+	touch README.md
+	git init
+	git add README.md
+	git commit -m "first commit"
+	git remote add origin https://github.com/zhongjixiuxing/documents.git
+	git push -u origin master
+
+2、push an existing repository from the command line（已存在的库更新到Github上）
+	git remote add origin https://github.com/zhongjixiuxing/documents.git
+	git push -u origin master
