@@ -7,5 +7,11 @@
 	git push -u origin master
 
 2、push an existing repository from the command line（已存在的库更新到Github上）
-	git remote add origin https://github.com/zhongjixiuxing/documents.git
+	git remote add origin https上://github.com/zhongjixiuxing/documents.git
 	git push -u origin master
+
+3、如果本地的文件删除或者位置已经变动，想要更新到服务器，可以使用下面的指令
+	git commit -a -m "your update message"
+	git push origin master(分支名)
+
+
