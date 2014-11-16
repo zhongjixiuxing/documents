@@ -15,3 +15,8 @@
 	git push origin master(分支名)
 
 
+4、如果对文件作出修改，需要更新服务端
+	git add .(.代表当前所有的文件，如果需要可以指定更新的文件)
+	git commit -m '更新信息'
+	git push origin master(分支名)
+
