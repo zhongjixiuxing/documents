@@ -1,0 +1,5 @@
+	错误代码：
+		Transport (VMDB) error -44: Message. The VMware Authorization Service is not running.
+	
+	解决方法：
+		开始菜单--运行--services.msc 回车找到VMware Authorization Service 这个服务，启动就好了
