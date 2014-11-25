@@ -1,0 +1,7 @@
+1、www.faevatech.com/webmail/ 这是在外面登陆公司邮箱的网址
+
+2、飞华公司mongoose模块的安装位置：C:\Users\chuanxing\AppData\Roaming\npm\node_modules\mongoose
+
+3、req.url == '/upload' && req.method.toLowerCase() == 'post')
+
+4、php用phpunit  js用Qunit  java用Junit  ios自带有unit  

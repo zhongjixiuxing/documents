@@ -1,0 +1,44 @@
+	前言，npm是NodeJS包管理和分发工具，已经成为了非官方的发布Node模块（包）的标准。
+1、使用npm安装mongoose:
+	在DOS窗口：npm install -g mongoose
+	特别说明，这就像在linux上使用yum命令一样，简直就是爽乐得；
+
+2、安装完之后记得几下自己的mongoose安装后的位置，下面需要使用到
+
+3、下面就上一份简单的增查模块例程：
+	var http = require("http");
+
+	function handleRequest(req, res){
+
+  		var mongoose = require('C:\\Users\\chuanxing\\AppData\\Roaming\\npm\\node_modules\\mongoose');   //这里必须要是双斜线
+  		var db = mongoose.createConnection('192.168.16.44', 'TestForHang');
+ 		var schema = mongoose.Schema({ name: 'string' }); 
+  		var User = db.model('User', schema);
+
+  		var kitty = new User({ name: 'Zildjian' }); 
+  		kitty.save(function (err) {
+    			if (err) // ...
+   		 res.end('meow');
+  		}); 
+
+
+  		User.find({'name':'Zildjian'},function(err,docs){  
+	  		//res.render('index', { title: docs});
+	 		console.log("docs : "+docs);
+	 		res.writeHead(200,{"Content-Type":"text/plain"});
+	 		res.write("ok");
+	  		res.end(docs.name);
+	 		res.write("end");
+  		}); 
+	}; 
+
+	http.createServer(handleRequest).listen(8888);
+
+4、String 与 Json对象互转：
+	JSON.parse(jsontext);
+	JSON.stringify(jsonObj);
+
+
+
+
+
