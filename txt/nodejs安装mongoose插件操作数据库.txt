@@ -34,9 +34,28 @@
 
 	http.createServer(handleRequest).listen(8888);
 
+** nodejs 处理跨域访问问题
+	app.all('*', function(req, res, next) {
+    		res.header("Access-Control-Allow-Origin", "*");
+    		res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    		res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+    		res.header("X-Powered-By",' 3.2.1')
+    		res.header("Content-Type", "application/json;charset=utf-8");
+    		next();
+	});
+
 4、String 与 Json对象互转：
 	JSON.parse(jsontext);
 	JSON.stringify(jsonObj);
+
+5、__dirname 是nodejs中的一个常量，用来表示当前文件的父文件的绝对路径
+
+
+6、express、mongoose、supervisor、express-gernerator
+	-->express 是基于nodejs的一个mvc框架，
+	-->express-gernerator 是express的一个命令行工具
+	-->mongoose 是基于nodejs和mongoose的一个类似hibernate功能的一个工具
+	-->supervisor 是一个开发nodejs的一个好用的工具，用来自动检测文件的更新，免去重启的手续（爽）
 
 
 
