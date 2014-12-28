@@ -1,46 +1,46 @@
-此文档是建立在adb基础上的
+���ĵ��ǽ�����adb�����ϵ�
 
-首先用usb连接手机
-1、adb tcpip <端口号>
-2、adb connect <手机端的IP>:<上面设置的端口号>
-
-
-
-=========================其他的一些adb常用命令================================
+������usb�����ֻ�
+1��adb tcpip <�˿ں�>
+2��adb connect <�ֻ��˵�IP>:<�������õĶ˿ں�>
 
 
-【下面列出了Adb常用命令操作命令】
-1. 查看设备
+
+=========================������һЩadb��������================================
+
+
+�������г���Adb��������������
+1. �鿴�豸
 adb devices
-这个命令是查看当前连接的设备, 连接到计算机的android设备或者模拟器将会列出显示
-      2.安装软件
+��������ǲ鿴��ǰ���ӵ��豸, ���ӵ��������android�豸����ģ���������г���ʾ
+      2.��װ����
 adb install
-      adb install <apk文件路径> :这个命令将指定的apk文件安装到设备上
-3. 卸载软件
-adb uninstall <软件名>
-adb uninstall -k <软件名>
-如果加 -k 参数,为卸载软件但是保留配置和缓存文件.
-4. 进入设备或模拟器的shell：
+      adb install <apk�ļ�·��> :������ָ����apk�ļ���װ���豸��
+3. ж������
+adb uninstall <������>
+adb uninstall -k <������>
+����� -k ����,Ϊж���������Ǳ������úͻ����ļ�.
+4. �����豸��ģ������shell��
 adb shell
-通过上面的命令，就可以进入设备或模拟器的shell环境中，在这个Linux Shell中，你可以执行各种Linux的命令，另外如果只想执行一条shell命令，可以采用以下的方式：
+ͨ�����������Ϳ��Խ����豸��ģ������shell�����У������Linux Shell�У������ִ�и���Linux������������ֻ��ִ��һ��shell������Բ������µķ�ʽ��
 adb shell [command]
-如：adb shell dmesg会打印出内核的调试信息。
-5. 发布端口
-可以设置任意的端口号，做为主机向模拟器或设备的请求端口。如：
+�磺adb shell dmesg���ӡ���ں˵ĵ�����Ϣ��
+5. �����˿�
+������������Ķ˿ںţ���Ϊ������ģ�������豸������˿ڡ��磺
 adb forward tcp:5555 tcp:8000
-6. 从电脑上发送文件到设备
-adb push <本地路径> <远程路径>
-用push命令可以把本机电脑上的文件或者文件夹复制到设备(手机)
-7. 从设备上下载文件到电脑
-adb pull <远程路径> <本地路径>
-用pull命令可以把设备(手机)上的文件或者文件夹复制到本机电脑
-8、查看bug报告
+6. �ӵ����Ϸ����ļ����豸
+adb push <����·��> <Զ��·��>
+��push������԰ѱ��������ϵ��ļ������ļ��и��Ƶ��豸(�ֻ�)
+7. ���豸�������ļ�������
+adb pull <Զ��·��> <����·��>
+��pull������԰��豸(�ֻ�)�ϵ��ļ������ļ��и��Ƶ���������
+8���鿴bug����
 adb bugreport
-9、记录无线通讯日志
-一般来说，无线通讯的日志非常多，在运行时没必要去记录，但我们还是可以通过命令，设置记录：
+9����¼����ͨѶ��־
+һ����˵������ͨѶ����־�ǳ��࣬������ʱû��Ҫȥ��¼�������ǻ��ǿ���ͨ��������ü�¼��
 adb shell
 logcat -b radio
-10、获取设备的ID和序列号
+10����ȡ�豸��ID�����к�
 adb get-product
 adb get-serialno
 adb shell
