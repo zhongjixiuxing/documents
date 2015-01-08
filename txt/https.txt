@@ -1,0 +1,12 @@
+
+
+1、在php后端实现http转https很简单：
+	if ($_SERVER["HTTPS"]<>"on"){
+        $xredir="https://".$_SERVER["SERVER_NAME"].
+        $_SERVER["REQUEST_URI"];
+        echo "ok...";
+        header("Location: ".$xredir);
+      }
+    注意：这样的实现https可以说是基于一个没有验证的安全连接，要想实现更为简洁安全的还是要使用ssl的安全证书
+
+2、SSL CA是需要收费的
