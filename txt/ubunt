@@ -5,3 +5,6 @@
 	echo "hello world"  > /home/xxx/hello.txt
 	echo "hello world  nihao "  > /home/xxx/ac.txt
 	exit 0
+
+2、今天终于在ubuntu上安装php mongodb 的驱动,得纪录下（原来还有这么偏僻方式也终于被我试成功了）：
+	sudo pecl install -Z mongo
