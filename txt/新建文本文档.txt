@@ -1,7 +1,38 @@
-µÚÒ»ÖÖ·½·¨µÄ²½Öè£º
+ç¬¬ä¸€ç§æ–¹æ³•çš„æ­¥éª¤ï¼š
 
-1.ÔÚÒªActivityÖĞÊµÀı»¯WebView×é¼ş£ºWebView webView = new WebView(this);
+1.åœ¨è¦Activityä¸­å®ä¾‹åŒ–WebViewç»„ä»¶ï¼šWebView webView = new WebView(this);
 
-2.µ÷ÓÃWebViewµÄloadUrl()·½·¨£¬ÉèÖÃWevViewÒªÏÔÊ¾µÄÍøÒ³£º
-  »¥ÁªÍøÓÃ£ºwebView.loadUrl("http://www.google.com");
-  ±¾µØÎÄ¼şÓÃ£ºwebView.loadUrl("file:///android_asset/XX.html"); ±¾µØÎÄ¼ş´æ·ÅÔÚ£ºassets ÎÄ¼şÖĞ
+2.è°ƒç”¨WebViewçš„loadUrl()æ–¹æ³•ï¼Œè®¾ç½®WevViewè¦æ˜¾ç¤ºçš„ç½‘é¡µï¼š
+  äº’è”ç½‘ç”¨ï¼šwebView.loadUrl("http://www.google.com");
+  æœ¬åœ°æ–‡ä»¶ç”¨ï¼šwebView.loadUrl("file:///android_asset/XX.html"); æœ¬åœ°æ–‡ä»¶å­˜æ”¾åœ¨ï¼šassets æ–‡ä»¶ä¸­
+
+
+http://phalcon.5iunix.net/reference/tutorial.html
+http://docs.phalconphp.com/en/latest/reference/odm.html
+
+
+3ã€win ä¸‹å…³æœº
+	æŒ‰win+R
+	è¾“å…¥shutdown -a  //å–æ¶ˆè‡ªåŠ¨å…³æœº
+	è¾“å…¥at 18:30 Shutdown -s  //è®¾ç½®å®šæ—¶å…³æœº
+
+
+4ã€http://www.glgoo.com/s?q=could+not+extract+the+package.xml+file+from
+
+5ã€http://www.iteye.com/blogs/subjects/cordova
+
+
+6ã€//ç½‘ç«™ç‰¹æ•ˆè„šæœ¬
+	http://www.xwcms.net/js/list/jquerytx/jquerytx_1.html 
+	http://www.jsshare.com
+
+7
+	http://bbs.csdn.net/topics/390758377
+
+
+8ã€phalcon æºç å¯¼èˆª
+	https://github.com/Riu/phalconization
+
+
+9ã€åˆ©ç”¨ Composer ä¸€æ­¥ä¸€æ­¥æ„å»ºè‡ªå·±çš„ PHP æ¡†æ¶
+	http://www.tuicool.com/articles/im2eaeR
