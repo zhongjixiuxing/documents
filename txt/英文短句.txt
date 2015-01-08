@@ -1,0 +1,3 @@
+Software Architecture is the skeleton of a software. When we try to come up with a software architecture, we brainstorm to figure out the modules(at a higher level) which comprise the software and define what the functionality of each module should be. We don't deal with how the functionality of a module should be implemented.
+
+软件体系结构是软件的骨架。当我们试图想出一个软件架构，我们头脑风暴找出模块（上级）包括软件和定义每个模块的功能，应该是。我们不应对有一个模块的功能应实施。
