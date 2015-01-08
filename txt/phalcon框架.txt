@@ -1,0 +1,47 @@
+
+
+1、环境搭建：
+	*上官网下载相应php版本的dll配置文件， 然后按照官网的配置步骤就好；
+
+2、mvc理念：
+	
+
+3、查找数据（使用占位符）：
+	  $user = Users::findFirst(array(
+                "email = :email: AND password = :password: AND active = 'Y'",
+                "bind" => array('email' => $email, 'password' => $password)
+            ));
+
+4、服务端重定向：
+	$this->dispatcher->forward(array(
+            'controller' => 'session',
+            'action' => 'index'
+        ));
+
+5、将数据保存到session区域：
+	$this->session->set('auth', array(
+    				'id' => $user->id,
+    				'name' => $user->name));
+
+
+6、phaicon 中的对象属性数据持久化
+	$this->persistent->number;
+	
+	前面的persistent属性是phaicon在持久化保存的一个数组，
+	以后需要需要phaicon对象的数据持久化操作是，就可以使用这个属性，
+	就像使用static一样，爽；
+
+
+7、phalcon服务端重定向
+	$this->view->pick("power/add"); //服务端重定向
+
+7.1、 phalcon转发客户端
+	$this->response->redirect("Faeva2/user/user/index");
+
+
+8、phalcon 调试
+	$debug = new \Phalcon\Debug();
+	$debug->listen();
+    说明：不错，非常漂亮的调试界面， i like it...
+
+9、如果在securePlugin 中的Acl处理， auth role error after , 还是会继续执行渲染界面，但不会去执行action中的代码块；
