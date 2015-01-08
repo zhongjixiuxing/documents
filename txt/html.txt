@@ -1,0 +1,7 @@
+
+1、获取标签的绝对位置 : 
+	var X= this.getBoundingClientRect().left+document.documentElement.scrollLeft;
+	var Y =this.getBoundingClientRect().top+document.documentElement.scrollTop;
+
+2、停止冒泡事件：
+	event.stopPropagation(); //event 是js中全局变量代表是当前的事件对象
