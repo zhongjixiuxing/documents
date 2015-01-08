@@ -1,0 +1,38 @@
+第一种方法的步骤：
+
+1.在要Activity中实例化WebView组件：WebView webView = new WebView(this);
+
+2.调用WebView的loadUrl()方法，设置WevView要显示的网页：
+  互联网用：webView.loadUrl("http://www.google.com");
+  本地文件用：webView.loadUrl("file:///android_asset/XX.html"); 本地文件存放在：assets 文件中
+
+
+http://phalcon.5iunix.net/reference/tutorial.html
+http://docs.phalconphp.com/en/latest/reference/odm.html
+
+
+3、win 下关机
+	按win+R
+	输入shutdown -a  //取消自动关机
+	输入at 18:30 Shutdown -s  //设置定时关机
+
+
+4、http://www.glgoo.com/s?q=could+not+extract+the+package.xml+file+from
+
+5、http://www.iteye.com/blogs/subjects/cordova
+
+
+6、//网站特效脚本
+	http://www.xwcms.net/js/list/jquerytx/jquerytx_1.html 
+	http://www.jsshare.com
+
+7
+	http://bbs.csdn.net/topics/390758377
+
+
+8、phalcon 源码导航
+	https://github.com/Riu/phalconization
+
+
+9、利用 Composer 一步一步构建自己的 PHP 框架
+	http://www.tuicool.com/articles/im2eaeR
