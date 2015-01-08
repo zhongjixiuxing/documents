@@ -1,0 +1,76 @@
+	前言，npm是NodeJS包管理和分发工具，已经成为了非官方的发布Node模块（包）的标准。
+1、使用npm安装mongoose:
+	在DOS窗口：npm install -g mongoose
+	特别说明，这就像在linux上使用yum命令一样，简直就是爽乐得；
+
+2、安装完之后记得几下自己的mongoose安装后的位置，下面需要使用到
+
+3、下面就上一份简单的增查模块例程：
+	var http = require("http");
+
+	function handleRequest(req, res){
+
+  		var mongoose = require('C:\\Users\\chuanxing\\AppData\\Roaming\\npm\\node_modules\\mongoose');   //这里必须要是双斜线
+  		var db = mongoose.createConnection('192.168.16.44', 'TestForHang');
+ 		var schema = mongoose.Schema({ name: 'string' }); 
+  		var User = db.model('User', schema);
+
+  		var kitty = new User({ name: 'Zildjian' }); 
+  		kitty.save(function (err) {
+    			if (err) // ...
+   		 res.end('meow');
+  		}); 
+
+
+  		User.find({'name':'Zildjian'},function(err,docs){  
+	  		//res.render('index', { title: docs});
+	 		console.log("docs : "+docs);
+	 		res.writeHead(200,{"Content-Type":"text/plain"});
+	 		res.write("ok");
+	  		res.end(docs.name);
+	 		res.write("end");
+  		}); 
+	}; 
+
+	http.createServer(handleRequest).listen(8888);
+
+** nodejs 处理跨域访问问题
+	app.all('*', function(req, res, next) {
+    		res.header("Access-Control-Allow-Origin", "*");
+    		res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    		res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+    		res.header("X-Powered-By",' 3.2.1')
+    		res.header("Content-Type", "application/json;charset=utf-8");
+    		next();
+	});
+
+4、String 与 Json对象互转：
+	JSON.parse(jsontext);
+	JSON.stringify(jsonObj);
+
+5、__dirname 是nodejs中的一个常量，用来表示当前文件的父文件的绝对路径
+
+
+6、express、mongoose、supervisor、express-gernerator
+	-->express 是基于nodejs的一个mvc框架
+	-->express-gernerator 是express的一个命令行工具
+	-->mongoose 是基于nodejs和mongoose的一个类似hibernate功能的一个工具
+	-->supervisor 是一个开发nodejs的一个好用的工具，用来自动检测文件的更新，免去重启的手续（爽）
+
+7、express搭建一个简单的mvc模型：
+	安装express-gerneerator后可以打开dos
+	--》cd 到你想要建立一个mvc模型的文件夹
+	--》执行：express -e hang  这样即可建立一个名为hang的模型了，（网上教程：https://cnodejs.org/topic/547293caa3e2aee40698df0b）
+		里面的文件结构：
+			–node_modules 项目中依赖的包
+			–public 公共资源放的目录
+			–routes 学名 路由，里面放着一些路由文件
+			–views 放着就是页面文件了
+			–app.js 项目的入口文件。当然你也可以改成其他的名字。
+
+
+
+
+
+
+
