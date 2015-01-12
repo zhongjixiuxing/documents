@@ -1,2 +1,4 @@
 1、今晚回去看下这里的MongoDB的设计思想视频（20150112）
     http://www.mongoing.com/schema_design
+2、这个网站中的课程还是不错的，有时间上去看下、学下
+    http://www.hubwiz.com/coursecenter
