@@ -1,0 +1,2 @@
+1、今晚回去看下这里的MongoDB的设计思想视频（20150112）
+    http://www.mongoing.com/schema_design
