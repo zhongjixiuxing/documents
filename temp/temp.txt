@@ -1,0 +1,216 @@
+<?php
+namespace User\Controllers;
+
+use User\Models\User as User,
+    User\Models\Account as Account,
+    User\Auth\Exception,
+    Phalcon\Logger\Adapter\File as LogFile,
+    User\Controllers\BaseController;
+
+/**
+*  User Manage Controller
+*    1、用户登录注册的入口
+*    2、提供个人用户信息信息的更改
+*/
+
+class UserController extends BaseController{
+
+
+  public function loginAction($loginname, $password){
+    if(!$this->request->isPost()){
+      // $loginname = $this->request->getPost("loginname");
+      // $password = $this->request->getPost("password");
+
+      $query = array();
+      $query['loginname'] = $loginname;
+      $query['password'] = $password;
+
+      $user = User::getUser($query);
+
+      if($user){
+        $identity = array();
+        $identity['user-id'] = $user->UserId;
+        $this->session->set('identity', $identity);
+
+        $this->echoInfo(200, "success");
+      }else{
+        $this->echoInfo(600, "error");
+      }
+    }else{
+      $this->echoInfo(601, "request must be post method");
+    }
+  }
+
+  public function qqLoginAction(){
+    echo "yes, qqLogin...";
+    $openId = $this->request->getPost("openId");
+    $accessToken = $this->request->getPost("accessToken");
+
+
+    if($openId){
+      $log =  new LogFile("../log/test.log");
+      $log->log("openId : $openId");
+      $log->log("accessToken : $accessToken");
+    }else{
+
+      $log->log("sorry : sorry");
+    }
+  }
+
+  public function registerAction($loginname, $password, $repassword, $email, $phoneNumber){
+    if(!$this->request->isPost()){
+      // $loginname = $this->request->getPost("loginname");
+      // $password = $this->request->getPost("password");
+      // $repassword = $this->request->getPost("repassword");
+      // $email = $this->request->getPost("email");
+      // $phoneNumber = $this->request->getPost("phoneNumber");
+
+      $query = array();
+      $query['loginname'] = $loginname;
+      $query['password'] = $password;
+      $query['repassword'] = $repassword;
+      $query['email'] = $email;
+      $query['phoneNumber'] = $phoneNumber;
+      $result = User::register($query);
+
+      if(!$result){ //register success
+        $this->echoInfo(200, "success");
+      }else{
+        $this->echoInfo($result['code'], $result['msg']);
+      }
+    }else{
+      $this->echoInfo(601, 'request must be post method');
+    }
+  }
+
+  /**
+  * 修改密码
+  */
+  public function updatePwdAction($oldPassword, $newPassword){
+    if(!$this->request->isPost()){
+      // $oldPassword = $this->request->getPost("oldPassword");
+      // $newPassword = $this->request->getPost("newPassword");
+
+      $result = User::updatePassword($oldPassword, $newPassword);
+
+      if(!$result){
+        $this->echoInfo(200, "success");
+      }else{
+        $this->echoInfo($result['code'], $result['msg']);
+      }
+    }
+  }
+
+  private function echoInfo($code, $msg){
+    echo "{\"code\":$code, \"msg\":\"msg\":$msg}";
+  }
+
+}
+
+
+
+
+
+=================================================================================
+
+<?php
+  namespace User\Models;
+
+  use \Phalcon\Mvc\Collection;
+
+  require_once "../global/GlobalUtil.php";
+
+  /**
+  * User Mongo Model
+  */
+  class User extends Collection{
+
+    /**
+    * connection to test document
+    */
+    public function getResource(){
+        return "user";
+    }
+
+    public static function isExistName($name){
+        $query = [];
+        $query["name"] = $name;
+        $result = User::find(array($query));
+
+        if(count($result) > 0){
+          return true;
+        }else{
+          return false;
+        }
+    }
+
+    public static function isExistEmail($email){
+      $query = [];
+      $query["email"] = $email;
+      $result = User::find(array($query));
+
+      if(count($result) > 0){
+        return true;
+      }else{
+        return false;
+      }
+    }
+
+    public static function getUserNameById($uid){
+      $user = $this->getUserById($uid);
+      if($user){
+        return $user->name;
+      }else{
+        return null;
+      }
+    }
+
+    public static function getUser($query){
+      $arr = array();
+      foreach(array_keys($query) as $key){
+        $arr[$key] = $query[$key];
+      }
+
+      return User::findFirst(array($arr));
+    }
+
+    public static function register($query){
+      $query['UserId'] = User::uuid();
+      $user = new User();
+
+      foreach(array_keys($query) as $key){
+        $user->$key = $query[$key];
+      }
+
+      $user->save();
+    }
+
+
+    /**
+    *   根据id获取用户
+    * @param string uid
+    * @return User\Models\User / false
+    */
+    public static function getUserById($uid){
+      $query = array();
+      $query["uid"] = $uid;
+      return User::findFirst(array($query));
+    }
+
+    public static function uuid(){
+      if (function_exists('com_create_guid')){
+            return com_create_guid();
+        }else{
+            mt_srand((double)microtime()*10000);//optional for php 4.2.0 and up.
+            $charid = strtoupper(md5(uniqid(rand(), true)));
+            $hyphen = chr(45);// "-"
+            $uuid =
+                    substr($charid, 0, 8).
+                    substr($charid, 8, 4).
+                    substr($charid,12, 4).
+                    substr($charid,16, 4).
+                    substr($charid,20,12);
+            return $uuid;
+        }
+    }
+  }
