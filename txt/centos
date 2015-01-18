@@ -4,3 +4,6 @@
 2、SELINUX防火墙的开启/关闭设置:
     /usr/sbin/setenforce 0 立刻关闭 SELINUX
     /usr/sbin/setenforce 1 立刻启用 SELINUX
+    
+3、在CentOS 7上安装Node.js的4种方法
+    http://www.vmvps.com/4-ways-to-install-node-js-on-centos-7-servers.html
