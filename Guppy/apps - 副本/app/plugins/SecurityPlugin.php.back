@@ -1,0 +1,120 @@
+<?php
+/**
+*	 这是最早的一个关于路由访问控制的安全插件；
+* 	这是一个极其简单一个示例性Demo
+*/
+use Phalcon\Events\Event,
+	Phalcon\Mvc\User\Plugin,
+	Phalcon\Mvc\Dispatcher,
+	Phalcon\Acl;
+
+	class SecurityPluginssssssssss extends  Phalcon\Mvc\User\Plugin{
+		public static $num  = 0;  //这个数据并不能持久，使用persistent可以实现相同的功能，如下面的例子（实际上测试成功）
+
+		public function getAcl(){
+			if (!isset($this->persistent->acl)) {  //$this->persiste
+				//创建一个phaicon Acl
+				$acl = new Phalcon\Acl\Adapter\Memory();
+
+				//默认的action是 DENY access (拒绝访问)
+				$acl->setDefaultAction(Phalcon\Acl::DENY);
+
+				//创建两个角色，请注册到Acl中
+				$roles = array(
+						'user' => new Phalcon\Acl\Role('User'),
+						'guests' => new Phalcon\Acl\Role('Guests')
+				);
+				foreach ($roles as $role) {
+					$acl->addRole($role);
+				}
+
+				//设置一个私有的路径（这里指的是后台），并注册到Acl中
+				//Private area resources (backend)
+				$privateResources = array(
+						'companies' => array('index', 'search', 'new', 'edit', 'save', 'create', 'delete'),
+						'products' => array('index', 'search', 'new', 'edit', 'save', 'create', 'delete'),
+						'producttypes' => array('index', 'search', 'new', 'edit', 'save', 'create', 'delete'),
+						'invoices' => array('index', 'profile')
+				);
+				foreach ($privateResources as $resource => $actions) {
+					$acl->addResource(new Phalcon\Acl\Resource($resource), $actions);
+				}
+
+
+				//这是public公共的路由（既是前台，所有游客都有权限访问的路由）
+				//Public area resources (frontend)
+				$publicResources = array(
+						'index' => array('index'),
+						'about' => array('index'),
+						'session' => array('index', 'register', 'start', 'end'),
+						'contact' => array('index', 'send')
+				);
+				foreach ($publicResources as $resource => $actions) {
+					$acl->addResource(new Phalcon\Acl\Resource($resource), $actions);
+				}
+
+				//将公共路由访问权限添加到所有的角色中
+				//Grant access to public areas to both users and guests
+				foreach ($roles as $role) {
+					foreach ($publicResources as $resource => $actions) {
+						$acl->allow($role->getName(), $resource, '*');
+					}
+				}
+
+				//为私有路由路径设置可以有权限访问的角色
+				//Grant access to private area only to role Users
+				foreach ($privateResources as $resource => $actions) {
+					foreach ($actions as $action) {
+						$acl->allow('User', $resource, $action);
+					}
+				}
+				echo "<br>SecurityPlugin is creating persistent acl<br>";
+
+				$this->persistent->number = 0;
+				$this->persistent->acl = $acl;
+			}
+			$this->persistent->number++;  //可以使用number属性来统计某个客户端的访问属性；
+			$mynum2 = SecurityPlugin::$num;  //这种方式没用
+			$mynum2++;
+
+			return $this->persistent->acl;
+		}
+
+		/**
+		 * 这个函数在请求到phaicon容器时，在进行路由分发之前进行调用（相当于就是一个拦截器）
+		 *
+		 * @param Event $event 上下文事件对象，啥，再说一遍？不明白！
+		 * @param Dispatcher $dispatcher 路由分发器
+		 */
+		public function beforeExecuteRoute(Event $event, Dispatcher $dispatcher){
+			//获取session的user对象数据
+			$user = $this->session->get("user");
+
+			if($user != null){   //如果user不为空，说明用户已经登录成功，则设置身份为User，否则说明用户没有登录，设置身份为游客
+				$role = "User";
+			}else{
+				$role = "guests";
+			}
+
+			//获取请求的控制器名称和action名称
+			$controller = $dispatcher->getControllerName();
+			$action  = $dispatcher->getActionName();
+
+			echo "<br> require controller : $controller <br>";
+			echo "<br> require action : $action <br>";
+
+			//获取Acl 啥东西来的呀
+			$acl = $this->getAcl();
+
+			//通过acl判断role身份的请求在当前请求的controller和action有没有访问的权限
+			$allow = $acl->isAllowed($role, $controller, $action);
+
+			if($allow != Acl::ALLOW){ //如果没有访问权限，转发到错误处理页面，并返回false停止路由分发
+
+				echo "you don't has access limit to read $controller/$action";
+
+
+				return false;
+			}
+		}
+	}
