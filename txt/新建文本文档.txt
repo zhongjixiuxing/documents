@@ -39,3 +39,6 @@ http://docs.phalconphp.com/en/latest/reference/odm.html
 
 
 KONG1367238098659
+
+10、一元一个月使用服务器地址：
+	http://www.windowsazure.cn/?cd_wu=001
