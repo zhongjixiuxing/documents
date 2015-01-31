@@ -15,3 +15,5 @@ c功能和d相同，区别在于完成删除操作后进入INSERT MODE
 cc也是删除当前行，然后进入INSERT MODE
 
 u撤销操作，既是返回上一步
+
+ctrl+m回到行首
