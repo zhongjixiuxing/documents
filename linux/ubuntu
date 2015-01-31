@@ -1,1 +1,8 @@
-1
+1、配置开机执行的脚本
+需要把要执行的程序写在 /etc/rc.local文件中就可以了。
+#!/bin/bash
+echo "hello world" > /home/xxx/hello.txt
+echo "hello world nihao " > /home/xxx/ac.txt
+exit 0
+2、今天终于在ubuntu上安装php mongodb 的驱动,得纪录下（原来还有这么偏僻方式也终于被我试成功了）：
+sudo pecl install -Z mongo
