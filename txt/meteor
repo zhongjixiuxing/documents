@@ -2,3 +2,6 @@
         内。 我们想要 Posts 作用于整个APP范围内，因此我们在这里不要 Var 这个关键字。
 2、如果你把应用部署在 *.meteor.com 上，你一样可以通过 meteor mongo myApp 的方式进入你应用的 Mongo shell 进行操作。
        而且你还可以输入 meteor logs myApp 得到你应用的 log 日志
+3、清空app中的数据库和初始化项目：
+        meteor reset
+                注意，这是用在开发过程中，如果在实际上，慎重使用这个命令
