@@ -52,3 +52,28 @@
                                 date: false
                         }});
                 });
+                
+6、使用动态模板：
+        如果想使用RSTL的URL路由风格，则需要使用meteor的动态模板便签：
+                {{> yield}}
+        现在还是不能够清楚表达出这个动态模板，详细的说明可以去参考：
+                http://zh.discovermeteor.com/chapters/routing/
+        下面是/lib目录下的路由配置：
+                Router.configure({
+                        layoutTemplate: 'layout',       //配置所有路由默认的模板
+                        loadingTemplate: 'loading',     //客户端从服务端获取数据等待过程中的模板（可以使用sacha:spin）
+                        notFoundTemplate: 'notFound',   //url在服务端查找不到数据的模板，这里iron-router是怎样判断我提供的数据是否是合法的呢，请看下面
+                        waitOn: function() { return Meteor.subscribe('posts'); }        //模板渲染之前调用
+                });
+                
+                Router.route('/', {name: 'postsList'});    //定义路由与模板关联
+                Router.route('/posts/:_id', {              //:号是一个变量
+                  name: 'postsPage',                       
+                  data: function() { return Posts.findOne(this.params._id); }
+                });
+        
+                
+                //如果我们在 route.js 结尾添加了特别的 dataNotFound hook，Iron Rounter 就能足够智能地解决这个问题。
+                //这会告诉 Iron Router 不仅在非法路由情况下，而且在 postPage 路由，
+                //每当 data 函数返回“falsy”（比如 null、false、undefined 或 空）对象时，显示“无法找到”的页面。
+                Router.onBeforeAction('dataNotFound', {only: 'postsPage'});
