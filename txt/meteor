@@ -22,3 +22,13 @@
 
    * 则在客户端的代码就应该为：
         Meteor.subscribe('posts', 'anxing');  //订阅帖子作者为anxing的数据
+
+   ** 注意，如果在服务端有了条件限制，则在客户端是拿不到数据的
+        例如：服务端：
+                Meteor.publish('posts', function() {
+                        return Posts.find({flagged:false});
+                });
+              客户端：
+                Meteor.subscribe({flagged:true}); //这样是没有数据操作的，因为服务端没有比到flagged为true的数据返回
+              
+        
