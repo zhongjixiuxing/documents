@@ -30,5 +30,25 @@
                 });
               客户端：
                 Meteor.subscribe({flagged:true}); //这样是没有数据操作的，因为服务端没有比到flagged为true的数据返回
-              
-        
+                
+5、meteor服务端发布类型：
+        发布全部集合：
+                Meteor.publish('allPosts', function(){
+                        return Posts.find();
+                });
+        发布部分集合：
+                Meteor.publish('somePosts', function(){
+                        return Posts.find({'author': 'anxing'});   //发布author字段为anxing的集合   
+                });
+        发布部分字段：
+                Meteor.publish('allPosts', function(){
+                        return Posts.find({}, {fields: {
+                                date: false                       //日期字段不发布
+                        }});
+                });
+        混合发布：
+                Meteor.publish('allPosts', function(){
+                        return Posts.find({'author': 'anxing'}, {fields: {    //发布字段为anxing的集合并且隐藏date字段
+                                date: false
+                        }});
+                });
