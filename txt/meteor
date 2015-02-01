@@ -14,3 +14,11 @@
         });                         //这里是服务端发布整个posts集合（collection）
    然后需要在客户端进行订阅定义，否则是获取不到数据显示的，例如：
         Meteor.subscribe('posts');  //这里是客户端订阅posts集合
+        
+   * 如果需要在服务端增加一个条件，例如发布帖子的作者为anxing的数据，则在服务端发布的代码为：
+        Meteor.publish('posts', function(author){       //author 是posts中的一个字段，含义是作者
+                return Posts.find({author:author});
+        });
+
+   * 则在客户端的代码就应该为：
+        Meteor.subscribe('posts', 'anxing');  //订阅帖子作者为anxing的数据
