@@ -90,3 +90,14 @@
         加入第三方登陆注册修改密码模板：
                 meteor add ian:accounts-ui-bootsrap-3
                 meteor add accounts-password
+        加入后，再去header上加入对应的标签，具体在教程上有说明。
+        其他说明：用户登录，在客户端有用户的数据...why? yes, no exception, 第三方中用户的集合是自动发布的，并且只发布其中的
+                小部分，当前也可以设置发布的字段；
+9、关于Meteor的响应式：
+        响应式概念在meteor中无处不在，例如我们在后台修改数据库，前端马上就能自动刷新，这些都是meteor中强大的响应式框架
+        例如：
+                Meteor.startup(function() {             //客户端启动初始化函数
+                  Tracker.autorun(function() {          //配置响应式数据源，一次初始化后会以后会自动根据数据源的变动
+                    console.log('There are ' + Posts.find().count() + ' posts');   //这里的posts count就是数据源
+                  });
+                });
