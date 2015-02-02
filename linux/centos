@@ -7,3 +7,13 @@
     
 3、在CentOS 7上安装Node.js的4种方法
     http://www.vmvps.com/4-ways-to-install-node-js-on-centos-7-servers.html
+
+
+1、php5.4+   =>   yum install php
+2、MongoDB2.6+    => mongo官网 install 教程
+3、Meteor1.0+ 	=> curl https://install.meteor.com | /bin/sh
+4、git  => yum install git
+5、nodejs   => rpm -i http://mirrors.zju.edu.cn/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
+		yum install nodejs
+		nodejs --version
+		yum install npm   (可选)
