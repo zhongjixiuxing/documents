@@ -85,3 +85,8 @@
                 Tracker.autorun(function() { //Tracker这个东西真是神奇，能够自动跟踪数据源
                   alert(Session.get('message'));
                 });
+                
+8、Meteor的第三方用户登录注册模块，完成不用自己重新编写登录注册模块，完全爽歪歪；
+        加入第三方登陆注册修改密码模板：
+                meteor add ian:accounts-ui-bootsrap-3
+                meteor add accounts-password
