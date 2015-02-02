@@ -1,3 +1,11 @@
+meteor deploy myanxing.meteor.com    //部署项目到meteor服务器上
+meteor add mizzao:bootstrap-3        //增加boostrap到项目中
+meteor add iron:router               //增加Iron Router路由
+meteor add sacha:spin                //第三方动画加载模板
+meteor add ian:accounts-ui-bootstrap-3   	//用户登录注册ui插件模板
+meteor add accounts-password			//用户修改密码ui插件模板
+
+==================================================================================================================
 1、在Meteor中，关键字 var 限制对象的作用域在文件范围
         内。 我们想要 Posts 作用于整个APP范围内，因此我们在这里不要 Var 这个关键字。
 2、如果你把应用部署在 *.meteor.com 上，你一样可以通过 meteor mongo myApp 的方式进入你应用的 Mongo shell 进行操作。
