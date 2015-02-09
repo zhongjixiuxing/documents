@@ -1,0 +1,10 @@
+1、开启Apache多个端口访问不同的目录，从而实现不同的项目访问
+     在httpd.conf 文件中加入
+        Listen:8080
+        <VirtualHost *:8080>
+            ServerAdmin webmaster@test.com
+            DocumentRoot /var/www/html8080
+            ServerName www.test.com
+            ErrorLog logs/www.test.com-8888-error_log
+            CustomLog logs/www.test.com-8888-access_log common
+        </VirtualHost>
