@@ -8,3 +8,4 @@
             ErrorLog logs/www.test.com-8888-error_log
             CustomLog logs/www.test.com-8888-access_log common
         </VirtualHost>
+     *注意，不要忘记开启此目录的mod_rewriter功能
