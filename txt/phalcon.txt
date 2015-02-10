@@ -40,3 +40,8 @@ http://docs.phalconphp.com/en/latest/reference/odm.html
 10、在注销session中某个变量后，在本次请求过程中还没有销毁的，还能够继续使用，但是在下次请求时，这个session变量
     就不存在了，使用时注意：
 	$this->session->destroy('nam3');
+
+11、phalcon模板渲染问题：
+	render 	-> 用在controller中，在volt中配合content()使用，可以定义一次内容，然后在vole中一次输出；
+	partial -> 用在volt中，请求其他的模板插入其中
+	pick	-> 在controller中使用，只能选择一个视图输出；
