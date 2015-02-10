@@ -36,3 +36,7 @@ http://docs.phalconphp.com/en/latest/reference/odm.html
 
 9、利用 Composer 一步一步构建自己的 PHP 框架
 	http://www.tuicool.com/articles/im2eaeR
+	
+10、在注销session中某个变量后，在本次请求过程中还没有销毁的，还能够继续使用，但是在下次请求时，这个session变量
+    就不存在了，使用时注意：
+	$this->session->destroy('nam3');
