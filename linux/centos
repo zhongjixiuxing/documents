@@ -23,3 +23,11 @@
 			sudo ./install
 			然后在/etc/php.d/ 下新建phalcon.ini文件，在里面插入extension=phalcon.so
 			重启服务器即可
+
+	7、php安装mongo扩展 =>
+			wget http://pecl.php.net/get/mongo-1.5.8.tgz
+			tar zxvf mongo-1.5.8.tgz
+			cd mongo-1.5.8
+			/usr/local/php/bin/phpize 
+			./configure --with-php-config=/usr/local/php/bin/php-config   //注意这里的php-config目录位置
+			make && make install
