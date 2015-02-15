@@ -31,3 +31,16 @@
 			/usr/local/php/bin/phpize 
 			./configure --with-php-config=/usr/local/php/bin/php-config   //注意这里的php-config目录位置
 			make && make install
+			
+			
+5、防火墙设置：
+	centos7中的iptables防火墙一般没有，用firewall防火墙来替代
+		检查Firewalld服务的开启情况：
+			systemctl status firewalld
+		查询某个端口的开放情况：
+			firewall-cmd --query-port=27017/tcp
+		在防火墙中开放某个端口：
+			firewall-cmd --query-port=27017/tcp
+		在防火墙中关闭某个端口：
+			firewall-cmd --remove-port=27017/tcp
+		* 注意后面的tcp是ip/tcp协议，也是改为udp，根据实际情况更改
