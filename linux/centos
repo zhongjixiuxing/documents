@@ -31,6 +31,9 @@
 			/usr/local/php/bin/phpize 
 			./configure --with-php-config=/usr/local/php/bin/php-config   //注意这里的php-config目录位置
 			make && make install
+	8、开放mongodb 的端口：
+			1、参看下面的防火墙设置，先开放防火墙端口
+			2、查看/etc/mongod.conf配置中的bind_ip 选项是否符合当前的情况
 			
 			
 5、防火墙设置：
