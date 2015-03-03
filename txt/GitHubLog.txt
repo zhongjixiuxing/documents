@@ -20,3 +20,5 @@
 	git commit -m '更新信息'
 	git push origin master(分支名)
 
+5、在你不知如何做的时候，不妨实现输入如下的命令：
+	git status
