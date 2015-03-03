@@ -11,6 +11,7 @@
 4、部署开发生产环境：
 	1、php5.4+   =>   yum install php
 	2、MongoDB2.6+    => mongo官网 install 教程
+				http://docs.mongodb.org/manual/tutorial/install-mongodb-on-red-hat-centos-or-fedora-linux/
 	3、Meteor1.0+ 	=> curl https://install.meteor.com | /bin/sh
 	4、git  => yum install git
 	5、nodejs   => rpm -i http://mirrors.zju.edu.cn/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
