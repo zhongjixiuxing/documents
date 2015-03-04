@@ -49,3 +49,10 @@
 		在防火墙中关闭某个端口：
 			firewall-cmd --remove-port=27017/tcp
 		* 注意后面的tcp是ip/tcp协议，也是改为udp，根据实际情况更改
+		
+		
+		
+6、iptables 开启防火墙命令：
+	/sbin/iptables -I INPUT -p tcp --dport 80 -j ACCEPT
+
+
