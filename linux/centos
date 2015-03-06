@@ -85,12 +85,14 @@
 		mosquitto -v
 		
 	--> 2.2 订阅主题
-		mosquitto_sub -v -t sensor
+		mosquitto_sub -v -t sensor //订阅sensor主题的消息
+		mosquitto_sub -v -t sensor -h 112.74.111.92  //指定服务器路径订阅
 		    【-t】指定主题，此处为sensor
 		    【-v】打印更多的调试信息
 		    
 	-->2.3 发布内容
-		mosquitto_pub -t sensor  -m 12
+		mosquitto_pub -t sensor  -m 12 //发布主题为sensor，内容为12的消息
+		mosquitto_pub -t sensor -h 112.74.111.92 -m 12 //指定服务器路径发布
 	
 	安装启动测试过程中的错误及解决方式：
 		1、mosquitto_sub: error while loading shared libraries: libmosquitto.so.1: 
