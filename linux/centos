@@ -62,4 +62,8 @@
 8、让进程自动在后台运行：
 	nohup
 
+9、CentOS #include <uuid/uuid.h> 找不到文件解决方法：
+	sudo yum install e2fsprogs-devel
+	sudo yum install uuid-devel
+	sudo yum install libuuid-devel
 
