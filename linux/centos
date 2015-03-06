@@ -56,3 +56,10 @@
 	/sbin/iptables -I INPUT -p tcp --dport 80 -j ACCEPT
 
 
+7、查看当前cpu与内存的使用状况：
+	top
+
+8、让进程自动在后台运行：
+	nohup
+
+
