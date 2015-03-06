@@ -3,3 +3,6 @@
 
 2、查看磁盘使用情况：
    df -lh
+
+3、ldconfig
+    ldconfig一下，新的library才能在程 序运行时被找到。
