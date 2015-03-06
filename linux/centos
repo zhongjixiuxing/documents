@@ -60,7 +60,7 @@
 	top
 
 8、让进程自动在后台运行：
-	nohup
+	nohup 命令 &  //&是代表在后台执行的意思
 
 9、CentOS #include <uuid/uuid.h> 找不到文件解决方法：
 	sudo yum install e2fsprogs-devel
