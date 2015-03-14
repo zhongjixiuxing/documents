@@ -1,0 +1,14 @@
+1、ionic的写法好灵活，例如他的定义页面的header部分有两种不同的方式都可以实现相同的效果：
+    <div class="bar bar-header bar-positive">
+      <button class="button button-icon icon ion-navicon"></button>
+      <div class="h1 title">Header Buttons</div>
+      <button class="button button-clear button-positive">Edit</button>
+    </div>
+
+    <header class="bar bar-header bar-positive">
+      <h1 class="title">Home</h1>
+      <button class="button button-icon icon ion-navicon pull-left" ng-click="test()">
+      </button>
+      <button class="button button-icon icon ion-navicon pull-right ion-plus-round" ng-click="addDevice()">
+      </button>
+    </header>
