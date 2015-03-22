@@ -42,3 +42,6 @@ KONG1367238098659
 
 10、一元一个月使用服务器地址：
 	http://www.windowsazure.cn/?cd_wu=001
+	
+11、 QQ互联返回的资料
+  https://graph.qq.com/user/get_user_info?access_token=6923220BE94A08F6E375873BF7F88E6F&oauth_consumer_key=101168159&openid=744A301EE82A8A49D82535160CE11ABE
