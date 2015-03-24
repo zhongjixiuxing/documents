@@ -1,0 +1,16 @@
+1、 link
+    可以简单理解为，当directive被angular 编译后，执行该方法
+
+    这里你说的没错，link中的第一个参数scope基本上就是你说的上面写的那个scope。
+
+    element简单说就是$('my-dialog')
+
+    attrs是个map，内容是你这个directive上的所有属性，例如：你在页面上如果这样写了directive:
+
+    <my-dialog type="modal" animation="fade"></my-dialog>
+
+    那attrs就是：
+    {
+      type: 'modal',
+      animation: 'fade'
+    }
