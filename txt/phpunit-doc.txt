@@ -1,0 +1,53 @@
+/****************************常用的test function*******************************/
+
+1、assertSame(object, object)  => 测试两个对象是否相同
+
+2、assertEquals($param1, $param2) => 测试两个值是否相等
+
+3、assertTrue($param) => 判断参数是否为true
+
+4、assertTrue($param) => 判断参数是否为false
+
+5、assertArrayHasKey($key, $array, $msg='') => 判断数组中存在指定的key值
+
+6、assertArrayNotHasKey($key, $array, $msg='') => 判断数组中没有指定的key值
+
+7、assertClassHasAttribute($attributeName, $className, $msg) =>当 $className::attributeName 不存在时报告错误
+   -->assertObjectHasAttribute(string $attributeName, object $object[, string $message = ''])
+        =>当 $object->attributeName 不存在时报告错误
+
+8、assertContains(mixed $needle, Iterator|array $haystack[, string $message = ''])
+    => 当 $needle 不是 $haystack的元素时报告错误
+
+9、assertCount($expectedCount, $haystack[, string $message = ''])
+    =>当 $haystack 中的元素数量不是 $expectedCount 时报告错误(可以使用来测试数组)
+
+10、assertEmpty($param, $msg) => 判断是否为空(可以应用在数组上)
+    -->assertNull(mixed $variable[, string $message = ''])
+         =>当 $actual 不是 NULL 时报告错误
+
+11、assertFileEquals(string $expected, string $actual[, string $message = ''])
+     =>当 $expected 所指定的文件与 $actual 所指定的文件内容不同时报告错误
+
+12、assertFileExists(string $filename[, string $message = ''])
+     => 当 $filename 所指定的文件不存在时报告错误
+
+13、assertGreaterThan(mixed $expected, mixed $actual[, string $message = ''])
+     =>当 $actual 的值不大于 $expected 的值时报告错误
+    --> assertGreaterThanOrEqual()
+
+14、assertInstanceOf($expected, $actual[, $message = ''])
+     =>当 $actual 不是 $expected 的实例时报告错误
+
+15、assertInternalType($expected, $actual[, $message = ''])
+     =>当 $actual 不是 $expected 所指明的类型时报告错误
+
+16、assertJsonStringEqualsJsonString(mixed $expectedJson, mixed $actualJson[, string $message = ''])
+     =>当 $actualJson 对应的值与 $expectedJson 对应的值不匹配时报告错误
+
+17、assertRegExp(string $pattern, string $string[, string $message = ''])
+      =>当 $string 不匹配于正则表达式 $pattern 时报告错误
+
+18、assertStringEndsWith(string $suffix, string $string[, string $message = ''])
+      =>当 $string 不以 $suffix 结尾时报告错误
+    -->assertStringStartsWith()
