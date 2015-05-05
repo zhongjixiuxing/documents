@@ -32,6 +32,7 @@
 			/usr/local/php/bin/phpize 
 			./configure --with-php-config=/usr/local/php/bin/php-config   //注意这里的php-config目录位置
 			make && make install
+			完成之后还需要在/etc/php.d 下加入一个mongo.ini 文件（copy一个改修）
 			
 	8、开放mongodb 的端口：
 			1、参看下面的防火墙设置，先开放防火墙端口
