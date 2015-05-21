@@ -1,0 +1,2 @@
+生成文档命令：
+  phpdoc -d "D:\software install\xampp\htdocs\nimbus\apps\guppy\Controllers" -t "D:\software install\xampp\htdocs\phpdoc" --template responsive-twig
