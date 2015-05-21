@@ -46,10 +46,12 @@
 		查询某个端口的开放情况：
 			firewall-cmd --query-port=27017/tcp
 		在防火墙中开放某个端口：
-			firewall-cmd --query-port=27017/tcp
+			firewall-cmd --add-port=27017/tcp
 		在防火墙中关闭某个端口：
 			firewall-cmd --remove-port=27017/tcp
 		* 注意后面的tcp是ip/tcp协议，也是改为udp，根据实际情况更改
+		 上面是临时配置，系统重启后会失效。
+		 如果加上参数--permanent，就会永久配置，重启后依然有效。
 		
 		
 		
