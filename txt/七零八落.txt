@@ -14,6 +14,9 @@
 
 8、http://platform.telerik.com
 
+9、公司地址
+  中山市西区彩虹大道11号美银国际大厦2幢1006卡
+
 
 // $file = '../apps/admin/dirlist.php';
 // $f = fopen($file, 'w');
