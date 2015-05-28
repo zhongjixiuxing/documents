@@ -103,4 +103,11 @@
    		  --> 解决方案：
    		  	将mosquitto-1.4/lib/libmosquitto.so.1 复制到 /usr/lib 下，然后输入ldconfig即可
    	
+11、搭建nfs服务器
+	参考：http://www.linuxidc.com/Linux/2015-05/117378.htm
+	在里面需要注意的是，在启动nfs服务器步骤中
+		chkconfig nfs on
+	这个是错误的，因为在我的阿里云centos7中不是叫nfs这个名，可以在命令行敲nfs按tab键看到，我的是nfs-server
+	
+
 		
