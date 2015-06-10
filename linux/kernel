@@ -1,0 +1,27 @@
+1、kernel下载地址：
+    http://www.kernel.org
+    
+2、解压源码：
+    xz -d xxx.tar.xz
+    tar -xvf xx.tar
+
+3、编译内核：
+    make menuconfig   //配置编译选项
+    make               
+    
+4、安装内核：
+    make modules_install
+    
+    
+    
+
+
+
+error && solve:
+  1、error info：
+        /bin/sh: bc: command not found
+	      make[2]: *** [kernel/time/timeconst.h] Error 127
+	   why:
+	      在编译时缺少bc库
+	   solve：
+	      sudo yum -y install bc
