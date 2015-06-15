@@ -1,0 +1,251 @@
+===================================aliyun(centos7 X64)==============================================
+1、apache（默认是2.4.6） 
+	install:
+		sudo yum -y install apache
+       	test:
+		测试之前先确保防火墙设置：
+			1、关闭iptables : 
+				sudo iptables -F
+			2、关闭selinux :
+				sudo setenforce 0
+			3、使用firewalld防火墙开放80端口：
+				sudo firewall-cmd --permanent --add-port=80/tcp
+				sudo firewall-cmd --permanent --zone=public --list-ports
+				sudo firewall-cmd --reload
+		
+		
+		开启httpd服务：
+			sudo service httpd restart
+
+		在apache的服务器设置的根目录(/var/www/html)下新建一个html文件,然后在浏览器上访问
+		如果能够访问，则说明apache服务器已成功安装好
+
+2、php(默认是5.4.16)
+	install：
+		sudo yum install php
+		sudo service httpd restart
+	test：
+	        方式一：
+			在apache的服务器设置的根目录(/var/www/html)下新建一个php文件,输入以下内容：
+				<?php
+  	                   		phpinfo();
+               		然后保存退出，在浏览器上访问php文件，如果能够看到关于php的配置文件，则说明php的环境安装成功
+
+              	方式二：
+			在终端命令行上输入：
+				php -v
+			如果能看到php的版本信息，说明php的环境已经安装成功
+	
+
+3、MongoDB(2.6) 
+	install:
+		创建一个yum配置文件
+			sudo vi /etc/yum.repos.d/mongodb-org-2.6.repo
+		在上面的打开编辑的文本中输入以下文本：
+			[mongodb-org-2.6]
+			name=MongoDB 2.6 Repository
+			baseurl=http://downloads-distro.mongodb.org/repo/redhat/os/x86_64/
+			gpgcheck=0
+			enabled=1
+		保存退出，然后在命令行上执行：
+			sudo yum install -y mongodb-org
+		安装完成后，启动mongod服务
+			sudo service mongod start
+	test：	
+		使用客户端连接本地mongodb数据库
+			mongo
+		在终端输入mongo后，如果能连接到mongodb数据库，则说明MongoDB已经安装成功
+	
+	notice：
+		如果需要让其他主机连接到MongoDB，需要开放端口：
+			sudo firewall-cmd --permanent --add-port=27017/tcp
+			sudo firewall-cmd --reload			
+		默认端口是27017，如果需要修改，可以在/etc/mongod.config 文件中修改
+		还需要修改配置文件中bind_ip 选项
+			sudo vi /etc/mongod.config
+		将bind_ip=127.0.0.1 改为你主机的实际ip，否则外网还是访问不成功的。
+		然后重启mongod服务搞掂
+			sudo service mongod restart
+		 			
+		
+				
+4、安装git：
+	install：
+		sudo yum install git
+	test:
+		git --version
+
+
+5、php phalcon扩展():
+	install：
+		sudo yum install php-devel php-mysql gcc libtool pcre-devel
+		git clone https://github.com/phalcon/cphalcon 
+		cd cphalcon/ext 
+			git checkout 2.0.x 
+			sudo ./install
+			cd 到/etc/php.d/,创建一个phalcon.ini文件，输入以下内容：
+				extension=phalcon.so
+			
+			保存退出，重启httpd服务，在浏览器上查看php的配置文件，
+			如果看到有phalcon插件，说明已经安装成功
+			
+
+	notice:
+		如果需要使用2.0以下的版本，可以在上面的基础上将git checkout 2.0.x 命令中
+		2.0.x改为你需要编译的版本，然后重新编译、重新启动httpd服务器即可
+
+
+6、php mongo 扩展(1.5.8)
+	install:
+		wget http://pecl.php.net/get/mongo-1.5.8.tgz
+		tar -zxvf mongo-1.5.8.tgz
+		cd mongo-1.5.8
+		phpize
+		./configure --with-php-config=/usr/bin/php-config
+		
+		*注意上面的php-config绝对路径位置
+		 查看php-config 命令的绝对路径
+			which php-config
+
+		然后cd到/etc/php.d/目录下创建一个mongo.ini文件		
+			extension=mongo.so
+		重启httpd服务
+		
+	test:
+		在浏览器上访问服务器上的php配置文件，如果看到mongo选项，则说明安装成功
+
+
+			
+7、开启apche的Mod-Rewrite功能：
+	因为phalcon 需要apche的Mod-Rewrite 模块激活才能使用
+	
+	sudo vi /etc/httpd/conf/httpd.conf
+	1、在 Include conf.modules.d/*.conf 下面加入一行：
+		LoadModule rewrite_module modules/mod_rewrite.so
+	
+	2、在<Directory "/var/www/html"> xml中的 AllowOverride None
+	   配置改为AllowOverride All
+
+	3、保存退出，重启服务器即可
+
+
+
+
+
+=======================AWS (Amazon Linux AMI 2015.03 (HVM) X64) ============================================
+
+进入一个新的aws实例系统前，首先将yum更新下
+	sudo yum update
+
+然后关闭iptables防火墙
+	sudo iptables -F
+
+在aws ec2 控制面板开放80端口
+	网络与安全 -> 安全组 中找到实例所对应的安全组，在入站处添加http 80端口
+	保存退出即可 
+
+
+1、apache(2.4.12)
+	install:
+		sudo yum install httpd24
+	test
+		sudo service httpd start
+
+
+2、php(5.4.41):
+	install:
+		sudo yum install php54
+	test
+		php --version
+
+3、MongoDB(2.6.10)
+	install:
+		在命令行上输入一下内容：
+			echo "[MongoDB]
+			name=MongoDB Repository
+			baseurl=http://downloads-distro.mongodb.org/repo/redhat/os/x86_64
+			gpgcheck=0
+			enabled=1" | sudo tee -a /etc/yum.repos.d/mongodb.repo
+		接着输入：
+			sudo yum install -y mongodb-org-server mongodb-org-shell mongodb-org-tools
+	
+	test:
+		sudo service mongod start
+	
+	notice :
+		*配置文件在/etc/mongod.config
+		*与阿里云一样，需要在里面将bind_ip选项改为实际的IP地址
+		*如果需要外网访问，需要开放mongodb模块的27017端口
+	
+
+4、git
+	install
+		sudo yum install git
+	test 
+		git --version 
+
+5、phalcon(2.0.x):
+	install:
+		install：
+		sudo yum install php54-devel php54-mysql gcc libtool pcre-devel
+		git clone https://github.com/phalcon/cphalcon 
+		cd cphalcon/ext 
+			git checkout 2.0.x 
+			sudo ./install
+			cd 到/etc/php.d/,创建一个phalcon.ini文件，输入以下内容：
+				extension=phalcon.so
+			
+			保存退出，重启httpd服务，在浏览器上查看php的配置文件，
+			如果看到有phalcon插件，说明已经安装成功
+
+	参考：
+		http://www.bcnbit.com/instala-phalcon-en-amazon-web-services/
+			
+	notice:
+		如果需要使用2.0以下的版本，可以在上面的基础上将git checkout 2.0.x 命令中
+		2.0.x改为你需要编译的版本，然后重新编译、重新启动httpd服务器即可
+
+
+6、php mongo 扩展(1.6.9)
+	install:
+		sudo yum install openssl-devel
+		sudo yum -y install gcc php-pear php54-devel
+		sudo pecl install mongo
+
+		然后cd到/etc/php.d/目录下创建一个mongo.ini文件		
+			extension=mongo.so
+		重启httpd服务
+		
+	test:
+		在浏览器上访问服务器上的php配置文件，如果看到mongo选项，则说明安装成功
+
+	notice：
+		使用源码安装包的方式在aws上编译不了mongo.so执行文件，于是在网上找到pecl
+		命令行直接安装的方式安装最新的版本	
+		
+		如果想安装指定版本的mongo驱动,在执行pecl install mongo时指定版本号，例如：
+			sudo pecl install mongo-1.5.8
+
+	参考：
+		pecl install mongo：
+			http://www.liquidweb.com/kb/how-to-install-the-mongodb-php-driver-extension-on-centos-6/
+		中间遇到ssh库未安装问题，解决：
+			http://stackoverflow.com/questions/29262848/error-while-installing-mongo-driver-for-php-on-amazon-linux
+	
+		
+
+7、开启apche的Mod-Rewrite功能：
+	因为phalcon 需要apche的Mod-Rewrite 模块激活才能使用
+	
+	sudo vi /etc/httpd/conf/httpd.conf
+	1、在 Include conf.modules.d/*.conf 下面加入一行：
+		LoadModule rewrite_module modules/mod_rewrite.so
+	
+	2、在<Directory "/var/www/html"> xml中的 AllowOverride None
+	   配置改为AllowOverride All
+
+	3、保存退出，重启服务器即可
+
+
+8、php composer 组件使用：
+	http://docs.aws.amazon.com/aws-sdk-php/guide/latest/installation.html
