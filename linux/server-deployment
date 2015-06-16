@@ -1,7 +1,7 @@
 ===================================aliyun(centos7 X64)==============================================
 1、apache（默认是2.4.6） 
 	install:
-		sudo yum -y install apache
+		sudo yum -y install httpd
        	test:
 		测试之前先确保防火墙设置：
 			1、关闭iptables : 
