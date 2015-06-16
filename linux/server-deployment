@@ -110,7 +110,16 @@
 		然后cd到/etc/php.d/目录下创建一个mongo.ini文件		
 			extension=mongo.so
 		重启httpd服务
-		
+	
+	install2:
+		sudo yum install openssl-devel cyrus-sasl-devel
+		sudo yum -y install gcc php-pear
+		sudo pecl install mongo
+
+		然后cd到/etc/php.d/目录下创建一个mongo.ini文件		
+			extension=mongo.so
+		重启httpd服务
+	
 	test:
 		在浏览器上访问服务器上的php配置文件，如果看到mongo选项，则说明安装成功
 
