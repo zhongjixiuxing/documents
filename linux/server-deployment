@@ -138,7 +138,38 @@
 	3、保存退出，重启服务器即可
 
 
-
+8、MongoDB(3.0+) 
+	install:
+		如果系统已经安装到3.0以下的版本，先将其卸载先
+			sudo service mongod stop
+			sudo yum remove  mongodb-org
+		创建一个yum配置文件
+			sudo vi /etc/yum.repos.d/mongodb-org-3.0.repo
+		在上面的打开编辑的文本中输入以下文本：
+			[mongodb-org-3.0]
+			name=MongoDB Repository
+			baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/3.0/x86_64/
+			gpgcheck=0
+			enabled=1
+		保存退出，然后在命令行上执行：
+			sudo yum install -y mongodb-org
+		安装完成后，启动mongod服务
+			sudo service mongod start
+	test：	
+		使用客户端连接本地mongodb数据库
+			mongo
+		在终端输入mongo后，如果能连接到mongodb数据库，则说明MongoDB已经安装成功
+	
+	notice：
+		如果需要让其他主机连接到MongoDB，需要开放端口：
+			sudo firewall-cmd --permanent --add-port=27017/tcp
+			sudo firewall-cmd --reload			
+		默认端口是27017，如果需要修改，可以在/etc/mongod.config 文件中修改
+		还需要修改配置文件中bind_ip 选项
+			sudo vi /etc/mongod.config
+		将bind_ip=127.0.0.1 改为你主机的实际ip，否则外网还是访问不成功的。
+		然后重启mongod服务搞掂
+			sudo service mongod restart
 
 
 =======================AWS (Amazon Linux AMI 2015.03 (HVM) X64) ============================================
