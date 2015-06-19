@@ -172,6 +172,16 @@
 			sudo service mongod restart
 
 
+9、redis:
+	install
+		sudo yum -y install epel-release
+		sudo yum clean all && yum makecache
+		sudo yum -y install redis
+	test
+		redis-cli --version
+	start
+		sudo service redis start
+		
 =======================AWS (Amazon Linux AMI 2015.03 (HVM) X64) ============================================
 
 进入一个新的aws实例系统前，首先将yum更新下
