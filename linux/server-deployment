@@ -182,6 +182,46 @@
 	start
 		sudo service redis start
 		
+
+10、open MongoDB(3.0+) auth valification
+	*默认mongodb3.0 是没有开启auth授权的
+	*说明下，mongodb3.0的用户授权方式与2.0版本的有很大的差别（）。
+
+	开启方式：
+		创建某个数据库的用户：
+			db.createUser( { "user" : "accountAdmin01",
+                 			"pwd": "cleartext password",
+                 			"customData" : { employeeId: 12345 },
+                 			"roles" : [ { role: "clusterAdmin", db: "database" }] 
+				});
+		参考：
+			http://bbs.51cto.com/thread-1146654-1.html
+			http://docs.mongodb.org/manual/reference/method/db.createUser/
+
+		改变用户密码指令：	
+			db.changeUserPasswork("anxing","123123");
+
+		修改/etc/mongo.conf 配置文件，将里面的auth=true注释打开，然后重启
+				
+		在命令行上使用验证登录：
+			mongo {serverIp}[{port}]/{database name} -u username -p password
+			
+11、memcached
+	install
+		sudo yum -y install memcached
+	test
+		memcached -h
+	config file dir
+		/etc/sysconfig/memcached
+
+12、Install PHP Memcached Extension
+	install
+		sudo yum -y install php-pecl-memcached
+		sudo systemctl restart memcached
+		sudo service httpd restart
+	test
+		php -m | grep memcached
+		
 =======================AWS (Amazon Linux AMI 2015.03 (HVM) X64) ============================================
 
 进入一个新的aws实例系统前，首先将yum更新下
