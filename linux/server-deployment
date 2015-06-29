@@ -188,6 +188,14 @@
 		tar xzf redis-3.0.2.tar.gz
 		cd redis-3.0.2
 		sudo make
+	
+	notice
+		在使用时，如果在命令行中直接输入 redis-server 启动redis，使用的是redis代码中运行的
+		默认配置来运行，都不知是在运行的是在哪里的配置文件。我在命令行上执行一些指令是无法
+		在命令行中执行的，需要在配置文件上设置（这个redis的特点）~~ 炕...
+		解决方案是在执行redis-serever 命令后加入需要运行的配置文件，eg:
+			sudo redis-server redis.conf
+		(这个实在是太炕了，自己在搞弄了大半天摸出的解决方案，在网上实在找不到~~)
 
 10、open MongoDB(3.0+) auth valification
 	*默认mongodb3.0 是没有开启auth授权的
