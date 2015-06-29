@@ -230,7 +230,10 @@
 		
 13、Install php redis Extension
 	install
-		
+		wget https://github.com/phpredis/phpredis
+		phpize
+		./configure
+		sudo make && make install
 		
 =======================AWS (Amazon Linux AMI 2015.03 (HVM) X64) ============================================
 
