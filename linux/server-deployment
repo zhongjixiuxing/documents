@@ -181,6 +181,8 @@
 		redis-cli --version
 	start
 		sudo service redis start
+	redis 命令参考：
+		http://www.w3cschool.cc/redis/redis-pub-sub.html
 		
    redis(3.0+)官网最新版：
 	install
