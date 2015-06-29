@@ -182,6 +182,12 @@
 	start
 		sudo service redis start
 		
+   redis(3.0+)官网最新版：
+	install
+		wget http://download.redis.io/releases/redis-3.0.2.tar.gz
+		tar xzf redis-3.0.2.tar.gz
+		cd redis-3.0.2
+		sudo make
 
 10、open MongoDB(3.0+) auth valification
 	*默认mongodb3.0 是没有开启auth授权的
@@ -221,6 +227,10 @@
 		sudo service httpd restart
 	test
 		php -m | grep memcached
+		
+13、Install php redis Extension
+	install
+		
 		
 =======================AWS (Amazon Linux AMI 2015.03 (HVM) X64) ============================================
 
