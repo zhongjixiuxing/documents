@@ -190,6 +190,7 @@
 		tar xzf redis-3.0.2.tar.gz
 		cd redis-3.0.2
 		sudo make
+		sudo make install
 	
 	notice
 		在使用时，如果在命令行中直接输入 redis-server 启动redis，使用的是redis代码中运行的
