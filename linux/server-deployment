@@ -240,7 +240,8 @@
 		
 13、Install php redis Extension
 	install
-		wget https://github.com/phpredis/phpredis
+		git clone https://github.com/phpredis/phpredis
+		cd phpredis
 		phpize
 		./configure
 		sudo make && make install
