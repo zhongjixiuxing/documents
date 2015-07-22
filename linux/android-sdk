@@ -1,0 +1,36 @@
+确保系统中已装java jdk 工具：
+  如果没有，可以参照教程：
+    http://jingyan.baidu.com/article/eb9f7b6da590c8869364e8b5.html?qq-pf-to=pcqq.temporaryc2c
+
+1、翻墙访问：
+      http://developer.android.com/sdk/index.html
+  下载相应的android linux sdk版本，目前最新版本为anroid-sdk_r24.3.3-linux.taz
+  
+  注意：
+      1、由于服务器上的命令行操作界面，选择下载sdk的时候请不要选择studio版本的sdk，选择“SDK Tools Only”的版本下载
+      2、不能翻墙的请到下面网站中获取国内SDK镜像安装包：
+          http://www.androiddevtools.cn/
+
+2、配置hosts文件，准备翻墙download or update sdk
+      sudo vi /etc/hosts 
+      然后加入在最下面加入：  
+        64.233.162.83    dl.google.com
+        64.233.162.83    dl.l.google.com
+        64.233.162.83    dl-ssl.google.com
+        64.233.162.83    docs.google.com
+        64.233.162.83    drive.google.com
+      保存退出
+        
+      
+3、install or update android sdk 
+      install or update：
+        tar xvzf anroid-sdk_r24.3.3-linux.taz
+        cd android-sdk-linux/tools/
+        ./android update sdk --no-ui --no-https
+        
+        waitting...download or update android sdk is very slow...
+      
+        
+        
+        
+        
