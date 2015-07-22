@@ -42,7 +42,16 @@
           source /etc/profile
           
         
-
+4、cordova
+    install 
+      sudo npm install -g cordova
+      
+    test 
+      cordova create myapp anxing.com
+      cd myapp 
+      cordova platform add android
+      cordova build
+      
         
         
 
