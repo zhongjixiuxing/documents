@@ -1,0 +1,46 @@
+确保系统中已装java jdk 工具：
+  如果没有，可以参照教程：
+    http://jingyan.baidu.com/article/eb9f7b6da590c8869364e8b5.html?qq-pf-to=pcqq.temporaryc2c
+  
+  拷贝压缩包到linux下，执行unzip 压缩包解压。压缩包里面是文件将会在下面用到：
+
+  安装编译环境：
+    sudo yum install glibc-devel.i686
+    sudo yum install libstdc++-devel.i686
+    
+    拷贝libz.so.1.2.8文件到/lib目录下，然后执行：
+      sudo ln -s ./libz.so.1.2.8 ./libz.so.1
+      
+  
+  拷贝android-sdk-linux 到 /opt下
+  
+  cd /opt/android-sdk-linux/tools/
+  sudo chmod 0755 ./android
+  
+  sudo chmod 0755 /opt/android-sdk-linux/build-tools/22.0.0/aapt
+  sudo chmod 0755 /opt/android-sdk-linux/build-tools/22.0.0/dx
+  sudo chmod 0755 /opt/android-sdk-linux/build-tools/22.0.0/zipalign
+  
+  sudo vi /etc/profile
+  在最下面下面加入
+    #set android enironment
+    export ANDROID_HOME=/opt/android-sdk-linux
+    export PATH=$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools
+    export ANDROID_HOME
+    export PATH
+  保存退出，接着执行
+    source /etc/profile
+    
+4、cordova
+    install 
+      sudo npm install -g cordova
+    test 
+      cordova create myapp anxing.com
+      cd myapp 
+      cordova platform add android
+      cordova build
+      
+
+
+        
+        
