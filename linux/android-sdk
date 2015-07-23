@@ -11,7 +11,7 @@
       2、不能翻墙的请到下面网站中获取国内SDK镜像安装包：
           http://www.androiddevtools.cn/
 
-2、配置hosts文件，准备翻墙download or update sdk
+2、配置hosts文件，for准备翻墙download or update sdk
       sudo vi /etc/hosts 
       然后加入在最下面加入：  
         64.233.162.83    dl.google.com
@@ -20,28 +20,74 @@
         64.233.162.83    docs.google.com
         64.233.162.83    drive.google.com
       保存退出
+    
+    sudo yum install glibc-devel.i686
+    sudo yum install libstdc++-devel.i686
+    
+    
+    libz
+      install
+        wget http://zlib.net/zlib-1.2.8.tar.gz
+        tar zxvf zlib-1.2.8.tar.gz
+        export CFLAGS=-m32
+        cd zlib-1.2.8
+        ./configure
+        make
+        sudo make install
+        export CFLAGS=-m64
         
+        转完后默认的so文件在/usr/local/lib下，名为 libz.so.1.2.8
+        在此，还要执行以下命令：
+          ln -s /usr/local/lib/libz.so.1.2.8 /lib/libz.so.1
+        
+        issue :
+          fatal error: gnu/stubs-32.h: No such file or directory
+        solve：
+          sudo yum install glibc-devel.i686
+        
+      notice :
+        本人在一个centos7系统实例上成功编译安装32位的libz，可在另外一台centos7机器上面死活不能
+        编译成功，鉴于此，有一种解决方式，将能够正常运行的libz copy 过来也是能正常使用的，而且不用重新
+        编译。
       
 3、install or update android sdk 
       install or update：
         tar xvzf anroid-sdk_r24.3.3-linux.taz
-        cd android-sdk-linux/tools/
-        ./android update sdk --no-ui --no-https
         
-        waitting...download or update android sdk is very slow...
-      
-      configure system path :
         sudo vi /etc/profile
         在最下面下面加入
           #set android enironment
-          export ANDROID_HOME=/home/anxing/androi/android-sdk-linux
+          export ANDROID_HOME={{your android sdk direct}}
           export PATH=$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools
           export ANDROID_HOME
           export PATH
         保存退出，接着执行
           source /etc/profile
+        
+        cd android-sdk-linux/tools/
+        sudo chmod 0755 ./android
+    
+        sduo ./android update sdk --no-ui --no-https
+        
+        waitting...download or update android sdk is very slow...
+
+
+5、sdk文件改动配置：
+    --> 删除build-tools 里面最新的23.0.0-review 文件夹，在国内开源镜像服务器上面download一份最新版本的
+        android build-tools 文件夹, 然后放到sdk文件夹中。如果你download下来的是build-tools 文件夹名不是全部以
+        "22.0.0"这样的格式，另请去百度 android Platform Version 与 API Level 的对应关系，牢记sdk/build-tools/ 
+        里面保存的是"x.x.x"这样格式的build-tools这样命名的文件夹
+      
+        然后修改build-tools/x.x.x里面的执行文件权限为0755
+          sudo chmod 0755 aapt
+          sudo chmod 0755 dx
+          sudo chmod 0755 zipalign
           
         
+        国内开源android镜像网址：
+          http://www.androiddevtools.cn/
+    
+
 4、cordova
     install 
       sudo npm install -g cordova
@@ -52,8 +98,6 @@
       cordova platform add android
       cordova build
       
-        
-        
 
 All Notice:
   --> 如果在使用adb命令过程中出现缺少依赖库，请根据提示安装需要的库，大概adb所依赖的库有如下：
