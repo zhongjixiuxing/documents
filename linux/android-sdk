@@ -1,6 +1,17 @@
-确保系统中已装java jdk 工具：
-  如果没有，可以参照教程：
-    http://jingyan.baidu.com/article/eb9f7b6da590c8869364e8b5.html?qq-pf-to=pcqq.temporaryc2c
+/********************************************************************
+*
+*  本教程建立环境说明：
+*      aliyun
+*      centos7 x64
+*  
+*
+*  确保系统中已装java jdk 工具：
+*  如果没有，jdk也下载在文件夹中，然后可以参照教程：
+*    http://jingyan.baidu.com/article/eb9f7b6da590c8869364e8b5.html?qq-pf-to=pcqq.temporaryc2c
+*
+********************************************************************/
+
+
 
 1、翻墙访问：
       http://developer.android.com/sdk/index.html
