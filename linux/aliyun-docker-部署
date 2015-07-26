@@ -1,0 +1,7 @@
+
+成功安装后，在启动时出现：Could not find a free IP address ...'
+  solve:
+    sudo route del -net 172.16.0.0 netmask 255.240.0.0
+  原因是docker依靠172网段的路由，阿里云上面配置与此出现冲突
+
+
