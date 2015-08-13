@@ -254,6 +254,13 @@
 	  	sudo make install
 	test
 		beanstalkd -v
+
+	start
+		/usr/bin/beanstalkd -l 0.0.0.0 -p 11300 -b /var/lib/beanstalkd/binlog -F
+		-b 开启binlog，断电后重启会自动恢复任务。
+		
+		
+		
 		
 =======================AWS (Amazon Linux AMI 2015.03 (HVM) X64) ============================================
 
