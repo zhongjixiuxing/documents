@@ -246,6 +246,14 @@
 		phpize
 		./configure
 		sudo make && make install
+14、Install beanstalkd service
+	install 
+	  	git clone git://github.com/kr/beanstalkd.git
+	  	cd beanstalkd 
+	  	make
+	  	sudo make install
+	test
+		beanstalkd -v
 		
 =======================AWS (Amazon Linux AMI 2015.03 (HVM) X64) ============================================
 
