@@ -1,0 +1,52 @@
+http://blog.nosqlfan.com/html/3548.html
+http://jingpin.jikexueyuan.com/article/11179.html
+http://www.ttlsa.com/mongodb/page/3/
+
+安全：
+  现有漏洞或缺陷：
+
+  系统用户管理：
+    增删改查
+
+  SSL连接安全性
+
+
+
+备份与恢复：
+  collection
+    备份
+
+    恢复
+
+    注意
+
+  database
+    备份
+
+    恢复
+
+    注意
+
+  all database
+    备份
+
+    恢复
+
+    注意
+
+  热备份、恢复(不停止状态下)
+    副本
+
+
+迁移：
+    Mysql <==> MongoDB
+
+实时监控
+  工具
+
+分布式
+  部署(install)
+
+  管理
+
+性能优化：
