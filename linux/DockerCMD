@@ -4,3 +4,58 @@ http://www.tuicool.com/articles/zuiUZf
 
 save && export diffrecent:
   http://my.oschina.net/zjzhai/blog/225112
+
+常用命令：
+    1、查看当前正在运行的实例
+      docker ps
+    2、查看所有实例的历史列表
+      docker ps -a
+    3、查看当前镜像列表（images）
+      docker images
+    4、运行某个镜像
+      docker run []
+    5、docker 拉镜像到服务端（类似git）
+      docker pull
+
+    6、docker 退镜像到服务端（类似git）
+      docker push
+
+    7、登录某个registry服务器中，默认为docker官网的Hub
+      docker login
+
+    8、启动一个停止的container
+      docker start
+
+    9、停止一个正在运行的container
+      docker stop
+
+    10、删除一个container（container必须是以暂停）
+      docker rm
+
+    11、删除一个image
+      docker rmi
+
+    12、将一个container转换成一个image
+      docker commit
+
+    13、后接DockerFile生成一个image
+      docker builder
+
+    14、将一个image 打标签，也可以重命名
+      docker tag
+    15、进入正在运行的实例，退出不会导致实例death
+      docker exec -it container bash
+
+
+
+
+
+
+    http://www.tuicool.com/articles/zuiUZf
+    http://www.zhukun.net/archives/7604
+    http://segmentfault.com/a/1190000002567459
+    http://segmentfault.com/a/1190000002567459
+    https://docs.docker.com/registry/
+
+docker 授权设置
+    http://cloud.51cto.com/art/201412/458680_all.htm
