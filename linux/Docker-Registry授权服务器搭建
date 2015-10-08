@@ -1,0 +1,92 @@
+/******************************************************************************/
+*                 Docker registry2 + nginx 授权验证服务器搭建
+*
+* 实验思想：
+*      1、使用nginx的https和htpasswd方式进行授权验证，然后再转向docker-registry服务器
+*         处理，相关的详细介绍另请参照：http://cloud.51cto.com/art/201412/458680_all.htm
+*
+*
+* author : anxing
+* email  : anxing131@gmail.com
+* date   : 20151006
+*******************************************************************************/
+
+
+
+1、docker（centos7）
+      install :
+        yum update
+        curl -sSL https://get.docker.com/ | sh
+      test :
+        docker -v
+      start :
+        service docker start
+
+2、docker registry2
+      install && start:
+            docker run -d -p 5000:5000 --restart=always --name registry registry:2
+      notice :
+            -d 表示在后台运行
+            -p 指明端口的映射关系
+            --restart=always 每次docker service 重启时设置自启动从container
+            --name 在docker service container使用名称来标示
+            registry:2 在docker hub 上面的一个私有仓库的一个实例镜像
+
+            如果想要将push到registry2实例里面的镜像保存到外部的服务器某个目录下，可在
+            运行时加多一个选项（从下面的选项可以看出镜像是默认保存到registry2 容器的
+            /var/lib/registry目录下）：
+              -v `pwd`/data:/var/lib/registry
+
+            如果想要使用https协议与registry2容器通讯，可在启动时加入下面三个参数：
+              -v `pwd`/certs:/certs
+              -e REGISTRY_HTTP_TLS_CERTIFICATE=/certs/domain.crt
+              -e REGISTRY_HTTP_TLS_KEY=/certs/domain.key
+
+              其中domain使用registry2绑定的域名，相应的crt\key文件生成方法请往下面介绍
+
+
+              docker run -d -p 5000:5000 --restart=always
+                  -v `pwd`/data:/var/lib/registry
+                  -v `pwd`/certs:/certs
+                  -e REGISTRY_HTTP_TLS_CERTIFICATE=/certs/docker-registry.crt
+                  -e REGISTRY_HTTP_TLS_KEY=/certs/docker-registry.key
+                  --name registry registry:2
+
+      test :
+            docker pull hello-world
+            docker tag hello-world localhost:5000/hello-world:tag1
+            docker push localhost:5000/hello-world:tag1
+
+
+3、搭建nginx container:
+    install && test :
+      相关的安装和测试教程请参考我的github空间nginx文件：
+        https://github.com/zhongjixiuxing/documents/blob/master/linux/nginx
+    configure:
+      详细的nginx 配置文件在docker官网上面也有给出一份相关的例子，可以在github上面看到：
+        https://github.com/docker/docker-registry/tree/master/contrib/nginx
+      里面有三分配置文件，其中*.1-3-9.conf 是从nginx1.3.9版本加入一个叫chunked_transfer_encoding
+      的属性在里面，部署的时候应参照这份来部署。
+    notice:
+      1、*.1-3-9.conf 里面的：
+          upstream docker-registry {
+            server localhost:5000;
+          }
+        可以删除（删除是无问题的，但是留在我不知会有什么问题）
+      2、在docker-registry.conf文件中有行属性：
+            proxy_pass                       http://docker-registry;
+         需要将里面的域名换成真实环境下的域名，如果是局域网搭建的假域名，注意要在/etc/hosts
+         文件中加入假域名
+
+
+4、ssl相关的crt\key文件生成：
+      从我的github空间上面下载一个叫ssl.sh的shell脚本，然后执行按照里面的提示进行生成：
+        github空间地址：https://github.com/zhongjixiuxing/documents/tree/master/linux
+
+
+notice:
+      1、如果docker pull/push 出现相关的CA授权错误，请在/etc/sysconfig/docker文件中加入
+          --insecure-registry=120.25.229.38:443 
+        注意修改上面的ip和端口
+      2、配置完成后需要使用docker login命令的例子：
+        docker login -u anxing -p h137138 -e anxing131@qq.com 120.25.229.38:443
