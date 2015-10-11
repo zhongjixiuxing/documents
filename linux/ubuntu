@@ -8,3 +8,11 @@
 
 2、今天终于在ubuntu上安装php mongodb 的驱动,得纪录下（原来还有这么偏僻方式也终于被我试成功了）：
 	sudo pecl install -Z mongo
+	
+3、path 环境变量设置：
+	env是显示变量
+	set和export是设置变量
+	set用于csh环境
+	export用于bash环境
+	格式：set DISPLAY 192.168.1.1:0
+	export DISPLAY=192.168.1.1:0
