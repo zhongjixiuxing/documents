@@ -15,7 +15,7 @@
 		
 		
 		开启httpd服务：
-			sudo service httpd restart
+	re		sudo service httpd restart
 
 		在apache的服务器设置的根目录(/var/www/html)下新建一个html文件,然后在浏览器上访问
 		如果能够访问，则说明apache服务器已成功安装好
@@ -246,6 +246,7 @@
 		phpize
 		./configure
 		sudo make && make install
+		sudo echo "extension=redis.so" > /etc/php.d/redis.ini
 14、Install beanstalkd service
 	install 
 	  	git clone git://github.com/kr/beanstalkd.git
