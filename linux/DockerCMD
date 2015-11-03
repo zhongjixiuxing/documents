@@ -14,6 +14,19 @@ save && export diffrecent:
       docker images
     4、运行某个镜像
       docker run []
+      
+      Tips:
+        如果出现Failed to get D-Bus connection: No connection to service manager
+        原因：
+          1、网上说法有两种一种是docker的运行用户环境相关，运行在docker container内的root
+             没有拥有真正的root权限导致
+        解决：
+          1、在docker run 是加多--privileged和在结尾处加上 "/sbin/init" 引导进程，这样来确保container内
+             拥有真正的root权限， 更多的介绍请参考：
+              http://www.zhihu.com/question/32364206
+              http://qiita.com/tukiyo3/items/b24e4dc62de59d4a7570
+              http://blog.csdn.net/halcyonbaby/article/details/43499409
+  
     5、docker 拉镜像到服务端（类似git）
       docker pull
 
