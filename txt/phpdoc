@@ -1,2 +1,14 @@
 生成文档命令：
   phpdoc -d "D:\software install\xampp\htdocs\nimbus\apps\guppy\Controllers" -t "D:\software install\xampp\htdocs\phpdoc" --template responsive-twig
+
+
+1、在win7使用aws使用s3 sdk使用出现一个ssl的问题：
+    info ：
+        AWS HTTP error: cURL error 60: SSL certificate problem: self signed certificate in certificate chain
+    原因：
+        php  curl 链接其他服务器是出现的证书不受信任
+    解决
+        http://www.kuitao8.com/20140601/2583.shtml
+        --> 下载http://curl.haxx.se/ca/cacert.pem 证书保存
+        --> 往php.ini 中加入一行：curl.cainfo="dir/cacert.pem"
+        --> 重启服务器
