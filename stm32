@@ -1,0 +1,2 @@
+1、在keil5中生成bin文件
+fromelf.exe --bin -o "$L@L.bin" "#L"
