@@ -12,6 +12,6 @@
     source filename 或 . filename
     
 5、在securecrt 中设置vim颜色
-1) 选项 --> 会话选项 --> 终端 --> 仿真 -->  勾选“ANSI 颜色”。
-2)  在.bashrc中添加：export TERM=xterm
-退出后重新连接就可以了。
+    1) 选项 --> 会话选项 --> 终端 --> 仿真 -->  勾选“ANSI 颜色”。
+    2)  在.bashrc中添加：export TERM=xterm
+      退出后重新连接就可以了。
