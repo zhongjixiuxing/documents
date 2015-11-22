@@ -10,3 +10,8 @@
 4、source命令也称为“点命令”，也就是一个点符号（.）。source命令通常用于重新执行刚修改的初始化文件，使之立即生效，而不必注销并重新登录。
    用法：
     source filename 或 . filename
+    
+5、在securecrt 中设置vim颜色
+1) 选项 --> 会话选项 --> 终端 --> 仿真 -->  勾选“ANSI 颜色”。
+2)  在.bashrc中添加：export TERM=xterm
+退出后重新连接就可以了。
