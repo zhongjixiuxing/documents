@@ -15,3 +15,11 @@
     1) 选项 --> 会话选项 --> 终端 --> 仿真 -->  勾选“ANSI 颜色”。
     2)  在.bashrc中添加：export TERM=xterm
       退出后重新连接就可以了。
+
+6、端口占用情况：
+  1) netstat -tunlp 会显示所有端口和所有对应的程序,用grep管道可以过滤出想要的关键字段.
+      sudo netstat -tunlp |grep 22
+      sudo netstat -anp | grep 8080
+  2) 查看某一端口的占用情况： lsof -i:端口号
+      sudo lsof -i:端口号
+  3) 
