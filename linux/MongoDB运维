@@ -67,6 +67,16 @@ replication ：
         * 至少需要三个mongod实例，1 primary、1 second、1 arbitrate 或一个primary.两个以上second节点
         使用示例：
           /usr/bin/mongod --replSet=rs0 --storageEngine=wiredTiger --dbpath=/home/ec2-user/mongodb/slave/ --port=29018 --logpath=/home/ec2-user/mongodb/slave/mongod.log
+          分别启用mongod示例后，任意进入一个节点进行初始化：
+            rs.initiate()
+            conf={_id:"rs0", members:[{_id:0, host:"localhost:27017"}, {_id:1, host:"localhost:27018"}, {_id:2, host:"localhost:27019","arbiterOnly" : true}]}
+            rs.conf(conf);
+            rs.status();  //查看配置
+            rs.reconfig(conf); //重新配置
+            rs.add("hostname:port"); //增加members
+          
+          如果在slave节点的cli下，需要输入rs.slaveOk(); 才可以操作 
+      
       
 
 
