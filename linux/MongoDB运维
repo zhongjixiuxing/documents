@@ -55,7 +55,19 @@ http://www.ttlsa.com/mongodb/page/3/
 
 
 
-
+replication ：
+  Mongodb 有一下三种模式
+    --> master - slave 模式
+          使用这种模式来做备份集合，可官方并不推荐这种模式，存在单点故障问题
+        使用示例：
+          1、master节点启动时在启动命令中加上 --master 参数即可
+          2、slave节点启动时在启动命令中加上 --slave --source=host:port 即可
+    --> replication set
+        当一个primary死掉的时候，可以使用second节点当成primary使用
+        * 至少需要三个mongod实例，1 primary、1 second、1 arbitrate 或一个primary.两个以上second节点
+        使用示例：
+          /usr/bin/mongod --replSet=rs0 --storageEngine=wiredTiger --dbpath=/home/ec2-user/mongodb/slave/ --port=29018 --logpath=/home/ec2-user/mongodb/slave/mongod.log
+      
 
 
 
