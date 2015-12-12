@@ -4,6 +4,15 @@ http://www.tuicool.com/articles/zuiUZf
 
 save && export diffrecent:
   http://my.oschina.net/zjzhai/blog/225112
+  
+1、docker hub proxy
+  目前docker hub在国内基本上已经被封死了，可以使用国内的代理镜像服务器去将docker hub 中的register 
+  拉下来，目前经过测试可用的国内镜像有daocloud公司提供的代理服务，具体配置如下：
+    document ： http://f.dataguru.cn/thread-553463-1-1.html
+    操作如下
+        sudo sed -i 's|OPTIONS=|OPTIONS=--registry-mirror=http://xxx.m.daocloud.io |g' /etc/sysconfig/docker 
+        service docker restart
+    node : 请将xxx替换为您在 DaoCloud 上注册后，为您专属生成的Mirror地址链接名。
 
 常用命令：
     1、查看当前正在运行的实例
