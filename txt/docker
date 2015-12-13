@@ -1,0 +1,41 @@
+    3  sudo docker logs gloomy_kirch
+    4  sudo docker top gloomy_kirch
+    5  sudo docker inspect gloomy_kirch
+    6  sudo docker stop gloomy_kirch
+    7  sudo docker images 
+    8  sudo docker search android
+    9  sudo docker run -t -i webratio:android-sdk /bin/bash
+   10  sudo docker pull webratio/android-sdk 
+   12  sudo docker pull webratio/android-sdk 
+   14  sudo docker pull docker.io/webratio/android-sdk
+   15  sudo docker run -t -i docker.io/webratio/android-sdk /bin/bash
+   16  sudo docker search cordova
+   17  sudo docker -t  docker.io/webratio/cordova
+   18  sudo docker run -t -i docker.io/webratio/cordova /bin/bash
+   25  sudo docker run -d docker.io/webratio/cordova:latest
+   29  sudo docker run -d docker.io/webratio/cordova:latest /bin/bash
+   32  sudo docker cp 237b8168526b:/home/cordova/demo/platforms/android/ant-build/MainActivity-debug.apk /home/anxing
+   34  sudo docker run -d docker.io/webratio/cordova:latest  /bin/sh
+   37  sudo docker run -d docker.io/webratio/cordova:latest  /bin/sh -c "while true; do echo hello world; sleep 1; done"
+   39  sudo docker cp ea7675c5b64f:/home/cordova/demo/platforms/android/ant-build/MainActivity-debug.apk /home/anxing
+   44  sudo docker stop desperate_bartik
+   45  sudo docker run -t -i docker.io/webratio/cordova:latest /bin/bash
+   47  sudo docker stop tender_yonath
+   48  sudo docker rm tender_yonath
+   62  sudo docker start -i modest_yalow /bin/bash
+   69  sudo docker start 0i modest_yalow /bin/bash
+   70  sudo docker start -i modest_yalow /bin/bash
+   71  sudo docker start -a modest_yalow /bin/bash
+   72  sudo docker start -a desperate_bartik /bin/bash
+   76  sudo docker run -t -i docker.io/webratio/cordova:latest /bin/bash
+   78  sudo docker start -i trusting_babbage
+   81  sudo docker run -d centos:latest  /bin/sh -c "while true; do echo hello world; sleep 1; done"
+   83  sudo docker rm ecstatic_darwin
+   84  sudo docker stop ecstatic_darwin
+   85  sudo docker rm ecstatic_darwin
+   88  sudo docker run -t -i centos:latest  /bin/sh -c "while true; do echo hello world; sleep 1; done"
+   92  sudo docker rm fervent_brown
+   94  sudo docker start modest_yalow
+   98  sudo docker start --help
+   99  sudo docker start -i modest_yalow
+  102  sudo docker rm gloomy_perlman
