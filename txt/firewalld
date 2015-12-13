@@ -1,0 +1,6 @@
+
+  278  firewall-cmd --zone=dmz --list-ports
+  281  sudo firewall-cmd --zone=public --add-port=7000/tcp --permanent
+  283  sudo firewall-cmd --reload
+  284  sudo firewall-cmd  --list-ports
+
