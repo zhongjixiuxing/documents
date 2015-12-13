@@ -22,6 +22,20 @@ save && export diffrecent:
         --> 可能是存储空间不够，也可能是其他的原因所导致的，解决方案是将/var/lib/docker 的目录删除， 然后重新启动即可 
 
 
+images/contianer 导入导出操作：
+  Image:
+    导出：
+      docker save xxx > /home/xxx.tar
+    导入
+      docker load < /home/xxx.tar
+  
+  contianer
+    导出
+      docker export <CONTAINER ID> > /home/export.tar
+    导入
+      cat /home/xxx.tar | docker import - imageName:latest
+
+
 常用命令：
     1、查看当前正在运行的实例
       docker ps
