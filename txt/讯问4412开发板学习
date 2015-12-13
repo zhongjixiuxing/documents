@@ -1,0 +1,69 @@
+# 烧写系统步骤：
+  1、fdisk -c 0
+  2、fastboot
+  3、打开fast 的cmd
+  4、fastboot.exe flash kernel zImage
+  5、fastboot.exe flash ramdisk ramdisk-uboot.img
+  6、fastboot.exe flash system system.img
+  7、fastboot -w（格式化FAT、Data、cache分区）
+  8、fastboot reboot
+
+#烧写驱动步骤：
+  1、需要连接上接口线和usb-otg线（传统手机usb线）到开发板
+  2、确保按照迅为文档将驱动安装成功
+  3、打开window的dnw软件，并连接到端口 Serial Port->Connect
+  4、重新启动进入到uboot命令行，既是在启动倒计时进入的命令行下，输入 dnw 4000800
+     这句的意思是启动 DNW， 设置程序下载到 0x40008000 地址
+  5、然后选择：USB Port->Transmit->Transmit，弹出文件选择框，选择要烧录的.bin 文件（怎样得到.bin文件？）
+  6、选择完后，再打开USB Port->Transmit，可以看到刚才选择的.bin文件，点击它即可下载到开发板上
+  7、在命令行上执行go 40008000 使cpu从0x40008000地址开始运行刚才下载到板上的驱动程序
+
+
+#引脚三种寄存器区别
+  1、GPxCON 寄存器，用于配置引脚功能
+	00 输入 01 输出
+	10 特殊功能 11 保留不用
+  2、GPxDAT 寄存器
+	GPxDAT用于读写引脚，当引脚被设为输入时候，读此寄存器可知道相应引脚的电平状态高还是低，当引脚被设为输出时候，写此寄存器的位，可令引脚输出高电平还是低电平。  3、GPxUP寄存器
+	GPxUP寄存器某位为1的时候，相应管脚没有内部上拉电阻；为 0 时候 相应管脚有内部上拉电阻。
+	上拉电阻作用在于，当GPIO 引脚处于第三种状态时候，既不是输出高电平，也不是输出低电平。而是呈现高阻态，相当于没有接芯片。它电平状态由上下拉电阻决定。
+
+#制作最小linux系统
+  按照迅为的文档来做，做文档 中注意最后一个步骤是错误的，在第五步，应该是返回system的上一级目录执行命令
+
+#linux程序编写、编译和烧写到开发板上
+  1、随便在一个目录下建立一个C文件，并写好相关代码
+  2、调用迅为已经配置好的交叉编译工具arm-none-linux-gnueabi-gcc -o helloword helloword.c
+  3、复制编译后的hellowork文件到最小linux系统的/bin目录下
+  4、重新编译:make_ext4fs -s -l 314572800 -a root -L linux system.img system
+  5、然后重新执行fastboot工具将system.img烧写到开发板上
+  6、重启开发板
+  7、cd /bin 下可以看到刚才的复制的helloword文件，直接执行即可
+
+
+#常用的字符驱动库文件
+  库文件“sys/types.h”、“sys/stat.h”以及“fcntl.h”：
+  这三个库文件是和 Linux 驱动相关的函数库， 如果用户要调用底层的字符驱动， 则需要先
+  调用这三个头文件。
+
+
+#错误提示：Segmentation fault
+  检查代码中变量是否没有初始化就调用了
+  变量指针需要 调用(char *)malloc(30); 来分配内存空间
+
+#库文件：
+  库文件"string.h"：
+    字符数组的函数库。常用的有 strlen、 strcmp、 strcpy 等等。
+
+  库文件" termios.h "：
+    用户在调用串口驱动的时候，需要这个库文件的支持，这个库文件包含大量的参数设置，
+    了解即可
+
+#关于tftp文件服务器事项：
+  1、tftp分两个，一个是tftpd 服务端。另一个是tftp客户端之分
+
+
+root=/dev/nfs rw nfsroot=192.168.168.106:/home/topeet/Linux/app/system
+ip=192.168.168.230:192.168.168.106:192.168.168.1:255.255.255.0:iTOP:eth0:off
+rootfstype=ext4 init=/Linuxrc console=ttySAC2,115200
+www.docs.amazonaaws.cn/en_us/aws-sdkphp/guide/latest/index.html
