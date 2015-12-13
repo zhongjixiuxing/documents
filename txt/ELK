@@ -1,0 +1,18 @@
+
+/****************特别声明*********************************
+*  本教程是基于Centos7
+*
+*
+**********************************************************/
+
+Install	
+   -> ELK是依赖java来运行的，最好是jdk7 环境
+   -> 详细的教程可以查看访问elastic官网或者cdsn论文：
+	http://blog.csdn.net/i_chips/article/details/43309415
+
+ELK各个的中文文档地址：
+	Kibana        => http://kibana.logstash.es/content/v3/queries-and-filters.html
+	Elasticsearch => http://es.xiaoleilu.com/index.html
+	logstash      => 暂时还没有找到好的中文文档
+
+ELK
