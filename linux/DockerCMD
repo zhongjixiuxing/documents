@@ -14,6 +14,14 @@ save && export diffrecent:
         service docker restart
     node : 请将xxx替换为您在 DaoCloud 上注册后，为您专属生成的Mirror地址链接名。
 
+启动错误：
+  1、在linux上面启动时docker service 时可能会遇到下面遇到下面问题： 
+      Error starting daemon: mkdir /var/lib/docker: no space left on device
+        -->docker 所在的硬盘存储空间不够
+      No --storage-opt dm.thinpooldev specified, using loopback; this configuration is strongly discouraged for production use 
+        --> 可能是存储空间不够，也可能是其他的原因所导致的，解决方案是将/var/lib/docker 的目录删除， 然后重新启动即可 
+
+
 常用命令：
     1、查看当前正在运行的实例
       docker ps
