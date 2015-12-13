@@ -1,0 +1,68 @@
+#created by anxing 
+#at 20150517
+
+#在 Makefile 使用 include 关键字可以把别的 Makefile 包含进来，这很像 C 语言的
+#include，被包含的文件会原模原样的放在当前文件的包含位置。include 的语法是： 
+#include <filename>  
+#make 命令开始时，会把找寻 include 所指出的其它 Makefile，并把其内容安置在当前
+#的位。就好像 C/C++的#include 指令一样。如果文件都没有指定绝对路径或是相对路径的话，
+#make 会在当前目录下首先寻找，如果当前目录下没有找到，那么，make 还会在下面的几个
+#目录下找：  
+#1、如果 make 执行时，有“-I”或“--incl
+#ude-dir”参数，那么 make 就会在这个参数  
+#所指定的目录下去寻找。  
+#2、如果目录<prefix>/include（一般是：/usr/local/bin 或/us
+#r/include）存在的话，
+#make 也会去找。如果有文件没有找到的话，make 会生成一条警告信息，但不会马上出现致
+#命错误。它会继续载入其它的文件，一旦完成 makefile 的读取，make 会再重试这些没有找
+#到，或是不能读取的文件，如果还是不行，make 才会出现一条致命信息。如果你想让 make
+#不理那些无法读取的文件，而继续执行，你可以在 include 前加一个减号“-”
+
+#Makefile有三个非常有用的变量。分别是$@，$^，$<代表的意义分别是： 
+#$@--目标文件，$^--所有的依赖文件，$<--第一个依赖文件。
+
+#objects = foo.o bar.o  
+#all: $(objects)  
+#$(objects): %.o: %.c  
+#$(CC) -c $(CFLAGS) $< -o $@  
+#上面的例子中，指明了我们的目标从$object 中获取，“%.o”表明要所有以“.o”结
+#尾的目标，也就是“foo.o bar.o”，也就是变量$object 集合的模式，而依赖模式“%.c”
+#则取模式“%.o”的“%”，也就是“foo bar”，并为其加下“.c”的后缀，于是，我们的
+#依赖目标就是“foo.c bar.c”。而命令中的“$<”和“$@”则是自动化变量，“$<”表示
+#所有的依赖目标集（也就是“foo.c bar.c”），
+#“$@”表示目标集
+#（也就是“foo.o bar.o”）。
+
+#变量在声明时需要给予初值，而在使用时，需要给在变量名前加上“$”符号，但最好
+#用小括号“（）”或是大括号“{}”把变量给包括起来。如果你要使用真实的“$”字符，
+#那么你需要用“$$”来表示。  
+
+#bjects = *.o  
+#上面这个例子，表示了，通符同样可以用在变量中。
+#并不是说[*.o]会展开，
+#不！
+#objects的值就是“*.o”。Makefile 中的变量其实就是 C/C++中的宏。如果你要让通配符在变量中
+#展开，也就是让 objects 的值是所有[.o]的文件名的集合，那么，你可以这样： 
+#objects := $(wildcard *.o)  
+#这种用法由关键字“wildcard”指出，关于 Makefile 的关键字
+obj  = start.o led.o
+
+led.bin: $(obj)
+	@echo 正在执行makefile工作	
+	arm-none-linux-gnueabi-ld -Ttext 0x0 -o led.elf $^
+	arm-none-linux-gnueabi-objcopy -O binary led.elf led.bin
+	arm-none-linux-gnueabi-objdump -D led.elf > led_elf.dis
+
+
+%.o : %.S
+	arm-none-linux-gnueabi-gcc -o $@ $< -c -nostdlib
+
+%.o : %.c
+	arm-none-linux-gnueabi-gcc -o $@ $< -c -nostdlib
+
+clean:
+	#前面加-符号代表有错误继续往下执行，但会显示错误信息到控制台
+	-rm *.o *.elf *.bin *.dis anxing.disd 
+	#后面加-f 代表有错误即系往下执行，也不会提示任何信息到控制台
+	#rm *.o *.elf *.bin *.dis anxing.disd -f
+        
