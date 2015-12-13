@@ -1,3 +1,7 @@
+1、获取容器ip
+	docker inspect --format='{{.NetworkSettings.IPAddress}}' $CONTAINER_ID
+
+
     3  sudo docker logs gloomy_kirch
     4  sudo docker top gloomy_kirch
     5  sudo docker inspect gloomy_kirch
