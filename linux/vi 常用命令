@@ -16,4 +16,21 @@ cc也是删除当前行，然后进入INSERT MODE
 
 u撤销操作，既是返回上一步
 
+
+
+:split 水平分屏
+:vplit 垂直分屏
+:split /path/file 水平分屏并打开文件
+:new /path/file 新建文件（水平）
+:vnew /path/file 新建文件（垂直）
+ctrl w w 切换分屏
+ctrl w h 跳转到左边的窗口 （若为大写H，则是把当前窗口调至左方）
+ctrl w l 跳转到右边的窗口 （类似于上）
+ctrl w k 跳转到上面的窗口 （若为大写K，则是把当前窗口调至上方）
+ctrl w j 跳转到下面的窗口 （类似于上）
+ctrl w +/- 增减或减少当前窗口的高度
+ctrl w = 设置当前所有窗口高度一致
+
+hjkl 四个方向键
+
 ctrl+m回到行首
