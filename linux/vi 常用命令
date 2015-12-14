@@ -32,5 +32,13 @@ ctrl w +/- 增减或减少当前窗口的高度
 ctrl w = 设置当前所有窗口高度一致
 
 hjkl 四个方向键
+ctrl r 恢复上一步被撤销的操作
+
+0 回到行首
+$ 回到行尾
+:s/<find>/<replace>/ 替换当前行第一个 find 为 replace 
+:s/<find>/<replace>/c 替换当前行第一个find 为 replace (需要用户确认，由c来配置)
+:%s/<find>/<replace>/gc    替换所有行所有的find 为 replace （需要用户确认）
+:%s/vivian/sky/       替换每一行中首个find 为 replace
 
 ctrl+m回到行首
