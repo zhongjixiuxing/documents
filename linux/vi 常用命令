@@ -39,6 +39,6 @@ $ 回到行尾
 :s/<find>/<replace>/ 替换当前行第一个 find 为 replace 
 :s/<find>/<replace>/c 替换当前行第一个find 为 replace (需要用户确认，由c来配置)
 :%s/<find>/<replace>/gc    替换所有行所有的find 为 replace （需要用户确认）
-:%s/vivian/sky/       替换每一行中首个find 为 replace
+:%s/find/replace/       替换每一行中首个find 为 replace
 
 ctrl+m回到行首
