@@ -18,8 +18,12 @@ save && export diffrecent:
   1、在linux上面启动时docker service 时可能会遇到下面遇到下面问题： 
       Error starting daemon: mkdir /var/lib/docker: no space left on device
         -->docker 所在的硬盘存储空间不够
-      No --storage-opt dm.thinpooldev specified, using loopback; this configuration is strongly discouraged for production use 
+      No --storage-opt dm.thinpooldev specified, using loopback; this configuration is strongly discouraged for production use  
         --> 可能是存储空间不够，也可能是其他的原因所导致的，解决方案是将/var/lib/docker 的目录删除， 然后重新启动即可 
+  2、
+      ERRO[0000] [graphdriver] prior storage driver "devicemapper" failed: EOF 
+      FATA[0000] Error starting daemon: error initializing graphdriver: EOF
+      解决方法：reboot
 
 
 images/contianer 导入导出操作：
