@@ -84,6 +84,17 @@
         github空间地址：https://github.com/zhongjixiuxing/documents/tree/master/linux
 
 
+5、registry使用：
+      * get image list ，注意这里是要使用http get的方式去获取
+            curl -x GET http://localhost:4000/v2/_catalog
+      * 获取某个镜像的tags list :
+            curl -X GET  http://localhost:4000/v2/demo/tags/list
+      *其他详细信息参考：     
+            https://github.com/docker/distribution/blob/master/docs/spec/api.md#listing-repositories
+            
+
+
+
 notice:
       1、如果docker pull/push 出现相关的CA授权错误，请在/etc/sysconfig/docker文件中加入
           --insecure-registry=120.25.229.38:443 
