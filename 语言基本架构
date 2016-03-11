@@ -1,0 +1,28 @@
+前端UI/UX
+	html css js(angularjs, cordova， ionic)
+
+
+App
+	java cordova(html css js) eclipse androidSDK
+
+
+后台
+	数据库 
+		mongodb mysql
+	语言
+		php/java/nodejs + 一个mvc架构
+	服务器
+		aliyun/aws(linux)
+	其他
+		docker
+
+
+嵌入式
+	语言基础
+		C/C++/linux shell
+	硬件设计
+		基础电子原理 CAD PCB
+	芯片
+		51单片机 stm32 arm
+	系统集成
+		linux ucOs(实时系统)
