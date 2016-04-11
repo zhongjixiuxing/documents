@@ -1,0 +1,83 @@
+var flag = false;
+user = db.user.findOne({"_id" : ObjectId("567bd00eb5b9a4d04f8b4578")});
+
+// show collections
+profile = user.profile.fetch();
+client = user.client.fetch();
+account = client.account.fetch();
+trade = account.trade.fetch();
+tradeProfile = trade.tradeProfile.fetch();
+
+var apps = new Array();
+account.apps.forEach(function(app){
+  	var readApp = db.app.findOne({_id:app.$id});
+  	apps.push(readApp);
+});
+apps = apps;
+//end show collections;
+
+
+// delete documents 
+if(flag){
+  	profile_delRef = user.profile;
+	client_delRef = user.client;
+	account_delRef = client.account
+	trade_delRef = account.trade;
+	tradeProfile_delRef = trade.tradeProfile
+	apps_delRef   = account.apps;
+
+	account.apps.forEach(function(app){
+  		var readApp = db.app.findOne({_id:app.$id});
+  		delRefsDocument(readApp.appConfig);
+	});
+
+	delRefsDocument(profile_delRef);
+	delRefsDocument(client_delRef);
+	delRefsDocument(account_delRef);
+	delRefsDocument(trade_delRef);
+	delRefsDocument(tradeProfile_delRef);
+	delRefsDocument(apps_delRef);
+	
+	delDocument("user", user._id);
+	
+}
+//end delete documents
+
+
+/****************************functions*********************************************/
+
+
+
+/**
+* 判断一个变量是否为空
+*/
+var isNull = function(val){
+	if(val == null || val == undefined){
+		return true;
+	}
+	
+	return false;
+}
+
+/**
+* 删除指定collection index 的document
+*/
+var delDocument = function(collection, id){
+	db[collection].deleteOne({_id:id});
+};
+
+/**
+* 删除DBRef 所指向的document (支持数组  - 多个)
+*
+*/
+var delRefsDocument = function(refs){
+  	if(refs instanceof Array){
+  	  	refs.forEach(function(ref){
+			delDocument(ref.$ref, ref.$id);
+	  	});
+  	}else{
+  	  	delDocument(refs.$ref, refs.$id);
+  	}
+};
+
+/**********************end functions*************************************************/
