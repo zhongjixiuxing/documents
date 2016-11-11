@@ -1,0 +1,16 @@
+
+1、产生的证书文件对应配置关系
+  1. privkey.pem：安全证书的key文件（也就是Apache中的SSLCertificateKeyFile和Nginx的ssl_certificate_key）
+  2. cert.pem：Apache的服务器端证书（Apache的SSLCertificateFile）
+  3. chain.pem：Apache的根证书和中继证书（Apache的SSLCertificateChainFile）
+  4. fullchain.pem：所有证书（Nginx所需要的ssl_certificate）
+  
+  
+2、command 
+  certbot certonly --standalone -d axpeng.com -d www.axpeng.com
+  
+  
+3、renew
+  `certbot renew` 自动会把证书renew, 注意证书的位置默认 在/etc/letsencrypt/live
+      这里可以利用cron/ssh来做自动化renew(shell)
+  
