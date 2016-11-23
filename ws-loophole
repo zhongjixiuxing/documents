@@ -1,0 +1,3 @@
+loophole
+  http://{ip}:{port}/callback/v1/tokenService/getCode?code=ssdfsdsdff&state=12sd234f&timestamp
+  DDOS
