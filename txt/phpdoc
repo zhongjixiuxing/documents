@@ -12,3 +12,5 @@
         --> 下载http://curl.haxx.se/ca/cacert.pem 证书保存
         --> 往php.ini 中加入一行：curl.cainfo="dir/cacert.pem"
         --> 重启服务器
+
+sudo yum install --enablerepo=remi --enablerepo=remi-php56 php php-opcache php-devel php-mbstring php-mcrypt php-mysqlnd php-phpunit-PHPUnit php-pecl-xdebug php-pecl-xhprof
