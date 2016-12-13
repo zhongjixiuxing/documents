@@ -12,3 +12,12 @@
 	chmod 600 mongodb-keyfile
    一些细节和具体的步骤, 看下面的链接
    参考自： http://www.askmaclean.com/archives/deploy-replica-set-and-configure-authentication-and-authorization.html
+   
+   
+5、节点最新的oplog时间戳，比所有节点最旧的oplog时间戳还要小，该节点将找不到同步源，会一直处于RECOVERING而不能服务
+   此时有两种方式可以解决
+	1、stop, 删除该节点的所有数据, restart
+	2、stop, 将其他节点的最新一份数据直接覆盖到该节点的数据目录, restart
+   这两种方式有好, 也有不好的地方, 建议操作之前先看下下面的博文介绍的细节问题
+	http://www.tuicool.com/articles/zEzqimn
+	https://segmentfault.com/a/1190000004169833
