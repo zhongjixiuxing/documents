@@ -1,0 +1,14 @@
+1、一个集群至少需要三个节点
+	master/arber/secondary
+
+2、 arber 类型的节点不能保存数据, 负责维护集群的整体状态
+     notice :
+	仅仅在复制集成员为偶数个的时候加入投票节点。如果在拥有奇数个复制集成员的复制集中新增了一个投票节点，复制集可能会遇到 选举 僵局
+
+3、secondary priority 为0 是, 不能成为master
+
+4、集群授权认证需要ssl 类型的证书, 可以使用下面命令来生成：
+	openssl rand -base64 741 > mongodb-keyfile
+	chmod 600 mongodb-keyfile
+   一些细节和具体的步骤, 看下面的链接
+   参考自： http://www.askmaclean.com/archives/deploy-replica-set-and-configure-authentication-and-authorization.html
