@@ -27,3 +27,7 @@
 	总体机构图 ： http://blog.csdn.net/pelick/article/details/8644116
 	detail to do : https://mr-dai.github.io/mongodb/2015/11/23/MongoDB-Distribution-Tutorial.html
 /********************************************************************************************************************/
+
+
+replication set 用来做数据冗余/备份
+shared 用来实现分布式集群分片， 一般是水平伸缩(多机器节点部署)
