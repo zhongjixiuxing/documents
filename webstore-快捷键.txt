@@ -1,0 +1,5 @@
+高效快捷键总结
+
+   ctrl + f12               <==>    展示当前文件标签列表，并能快速定位css
+   alt + 1                  <==>    open / close project dir view window
+   ctrl + shift + f12       <==>    最大区域显示代码（会隐藏其他的功能界面模块）/ 最近打开的工具window
